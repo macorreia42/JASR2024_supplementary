@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
   echo = TRUE, #shows code
   warning = FALSE, message = FALSE, #stops warning messages
   fig.path = "images/",
-  dev = c("pdf", "png"), #saves figures as pdf and png in images folder
+  dev = c("svg", "png"), #saves figures as pdf and png in images folder
   tidy.opts=list(width.cutoff=60), # stops code from running off page
   tidy=TRUE
 )
@@ -107,7 +107,7 @@ header.true <- function(df) {
 
 ```
 
-# Producing the location map (Figure 1)
+# Producing the location map
 
 ```{r map, fig.width = 3.14, fig.height=3.14}
 africa <- ne_countries(type = "countries", continent = "Africa",
@@ -257,9 +257,8 @@ sISO<-dISO |>
   get_summary_stats(type = "common",
                     show = c("n", "mean", "sd", "median", "iqr"))
 
-kbl(sISO, format = "latex", booktabs = TRUE, longtable = TRUE,
+kbl(sISO, format = "html", booktabs = TRUE, longtable = TRUE,
              caption = "summary statistics")|>
-  kable_styling(latex_options = c("repeat_header"))|>
   row_spec(0, italic = TRUE)
 ```
 
@@ -306,9 +305,8 @@ mshapiro_results <- dISO %>%
   do(tidy(mvnormtest::mshapiro.test(as.matrix(select(., where(is.numeric))))))
 
 
-kbl(mshapiro_results, digits = c(0, 3, 10), format = "latex", booktabs = TRUE,
+kbl(mshapiro_results, digits = c(0, 3, 10), format = "html", booktabs = TRUE,
                caption = "Multinormality tests")|>
-  kable_styling(latex_options = "hold_position")|>
   row_spec(0, italic = TRUE)
 
 cqplot(lm(as.matrix(dISO[, 2:12]) ~ Group, data = dISO), main = "Chi-Square Q-Q Plot of MANOVA Model Residuals") 
@@ -323,9 +321,8 @@ uni_normal <- grouped.data |>
 
 color.me <- which(uni_normal$p.value < 0.01)
 
-kbl(uni_normal, digits = c(3, 3), format = "latex",
+kbl(uni_normal, digits = c(3, 3), format = "html",
     booktabs = TRUE,longtable = TRUE, caption = "Uninormality tests")|>
-  kable_styling(latex_options = c("repeat_header"))|>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 ```
@@ -345,10 +342,9 @@ levels <- levels(dISO$Group)
 
 for (i in seq_along(multihomo)) {
   #cat(paste("Table", i, "\n", "Covariance matrix for", levels(dISO$Group)))
-  print(kbl(multihomo[[i]], format = "latex", booktabs = T,
+  print(kbl(multihomo[[i]], format = "html", booktabs = T,
                      digits =3,
-            caption = paste0("Covariance matrix for the ", levels[i]))%>%
-          kable_styling(latex_options = c("scale_down", "hold_position")))
+            caption = paste0("Covariance matrix for the ", levels[i])))
   cat('\n\n')
 }
 
@@ -366,9 +362,8 @@ To asses **univariate equality of variances**, we used `levene_test` from the `r
 uni_homocedast <- grouped.data |>
   levene_test(value ~ Group)
 
-kbl(uni_homocedast, digits = c(0, 0, 0, 3, 3), format = "latex", booktabs = TRUE,
+kbl(uni_homocedast, digits = c(0, 0, 0, 3, 3), format = "html", booktabs = TRUE,
              caption = "Unihomocedasticity tests")|>
-          kable_styling(latex_options = c("hold_position"))|>
   row_spec(0, italic = TRUE)
 ```
 
@@ -390,9 +385,8 @@ permanova <- permanova|>
 
 options(knitr.kable.NA = '')
 kbl(permanova, caption = "Permanova Results with 999 permutations",
-    digits = c(0, 0, 0, 3, 3, 3, 3), format = "latex", booktabs = TRUE,
+    digits = c(0, 0, 0, 3, 3, 3, 3), format = "html", booktabs = TRUE,
     format.args = list(big.mark = ",")) |>
-  kable_styling(latex_options = c("hold_position"), full_width = FALSE)|>
   row_spec(0, italic = TRUE)
 ```
 
@@ -431,9 +425,8 @@ pairwisePermanova <- pairwisePermanova |>
 
 color.me <- which(pairwisePermanova$`adjusted p-value` < 0.05)
 
-kbl(pairwisePermanova, format = "latex", booktabs = TRUE,
+kbl(pairwisePermanova, format = "html", booktabs = TRUE,
              caption = pairwise_permanova$method)|>
-          kable_styling(latex_options = c("hold_position"))|>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 ```
@@ -467,8 +460,7 @@ color.me <- which(merged_data$`adjusted p-value` < 0.05)
 
 # Convert the R object into a LaTeX table
 kbl(merged_data, digits = c(3, 3, 0, 3, 3),
-    format = "latex", booktabs = TRUE, caption = "Univariate Kruskal-Wallis")|>
-  kable_styling(latex_options = "hold_position")|>
+    format = "html", booktabs = TRUE, caption = "Univariate Kruskal-Wallis")|>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 ```
@@ -500,9 +492,8 @@ colnames(merged_data_effsize) <- c("group1", "group2", "mean difference", "stati
 color.me <- which(merged_data_effsize$`adjusted p-value` < 0.05)
 
 kbl(merged_data_effsize, digits = c(3, 3, 3, 3, 3, 3),
-    format = "latex", booktabs = TRUE,
+    format = "html", booktabs = TRUE,
     caption = "Pairwise comparisons for Ssk using Dunn's test")|>
-  kable_styling(latex_options = c("hold_position", "scale_down"))|>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 
