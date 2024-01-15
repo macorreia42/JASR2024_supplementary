@@ -2,9 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
+# Untracked files
 CDA.png
 Figure2.jpg
 JASR2023.pdf
+JASR2023.log
 LD1LD2-1.svg
 /PAST*
 /Map.*
@@ -12,4 +14,3 @@ LD1LD2-1.svg
 /followup pairwise-1.svg
 /ggplot2-1.svg
 /Microwear_ISO.*
-JASR2023_files/
