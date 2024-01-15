@@ -4,15 +4,15 @@ title: ISO 25178 variables and multivariate analyses complement SSFA variables i
 author: "Maria Ana Correia"
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
 subtitle: Supplementary material
-format:
-  html:
-    code-fold: true
-    code-link: true
-    keep-md: true
+output:
+  html_document:
+    code_folding: hide
+    code_link: true
+    keep_md: true
     toc: true
     toc_float: true
     df_print: paged
-  pdf:
+  pdf_document:
     latex_engine: xelatex
     citation_package: default
     includes:
