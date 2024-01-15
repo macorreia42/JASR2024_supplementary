@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Maria Ana Correia">
+<meta name="dcterms.date" content="2024-08-11">
+<title>ISO 25178 variables and multivariate analyses complement SSFA variables in an in vivo human dental microwear study</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="JASR2023_files/libs/clipboard/clipboard.min.js"></script>
+<script src="JASR2023_files/libs/quarto-html/quarto.js"></script>
+<script src="JASR2023_files/libs/quarto-html/popper.min.js"></script>
+<script src="JASR2023_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="JASR2023_files/libs/quarto-html/anchor.min.js"></script>
+<link href="JASR2023_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="JASR2023_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="JASR2023_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="JASR2023_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="JASR2023_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#producing-the-location-map-figure-1" id="toc-producing-the-location-map-figure-1" class="nav-link active" data-scroll-target="#producing-the-location-map-figure-1">Producing the location map (Figure 1)</a></li>
+  <li><a href="#addressing-collinearity" id="toc-addressing-collinearity" class="nav-link" data-scroll-target="#addressing-collinearity">Addressing collinearity</a></li>
+  <li><a href="#visualization-and-descriptive-statistics" id="toc-visualization-and-descriptive-statistics" class="nav-link" data-scroll-target="#visualization-and-descriptive-statistics">Visualization and descriptive statistics</a></li>
+  <li>
+<a href="#inferential-statistics" id="toc-inferential-statistics" class="nav-link" data-scroll-target="#inferential-statistics">Inferential Statistics</a>
+  <ul class="collapse">
+<li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions">Assumptions</a></li>
+  <li><a href="#main-test" id="toc-main-test" class="nav-link" data-scroll-target="#main-test">Main Test</a></li>
+  <li>
+<a href="#follow-up-tests" id="toc-follow-up-tests" class="nav-link" data-scroll-target="#follow-up-tests">Follow-up tests</a>
+  <ul class="collapse">
+<li><a href="#pairwise-permanova" id="toc-pairwise-permanova" class="nav-link" data-scroll-target="#pairwise-permanova">Pairwise PERMANOVA</a></li>
+  <li><a href="#univariate-anova" id="toc-univariate-anova" class="nav-link" data-scroll-target="#univariate-anova">Univariate ANOVA</a></li>
+  <li><a href="#canonical-discriminant-analysis" id="toc-canonical-discriminant-analysis" class="nav-link" data-scroll-target="#canonical-discriminant-analysis">Canonical discriminant analysis</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="JASR2023.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">ISO 25178 variables and multivariate analyses complement SSFA variables in an in vivo human dental microwear study</h1>
+<p class="subtitle lead">Supplementary material</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Maria Ana Correia </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 11, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header><p>This file documents the statistical analysis of dental microwear variables from Kenyan living human populations, as well as the code to produce Figure 1, the location map with fieldwork sites. A previous analyses of SSFA parameters (<em>Asfc</em>, <em>epLsar</em>, <em>HAsfc</em>, <em>Tfv</em>) was published in <span class="citation" data-cites="correia2021">Correia, Foley, &amp; Lahr (<a href="#ref-correia2021" role="doc-biblioref">2021</a>)</span>. Here, ISO 25178 (or STA) parameters are also included in a multivariate analysis.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#save images in folder in directory</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span></span>
+<span>  echo <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">#shows code</span></span>
+<span>  warning <span class="op">=</span> <span class="cn">FALSE</span>, message <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co">#stops warning messages</span></span>
+<span>  fig.path <span class="op">=</span> <span class="st">"images/"</span>,</span>
+<span>  dev <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pdf"</span>, <span class="st">"png"</span><span class="op">)</span>, <span class="co">#saves figures as pdf and png in images folder</span></span>
+<span>  tidy.opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>width.cutoff<span class="op">=</span><span class="fl">60</span><span class="op">)</span>, <span class="co"># stops code from running off page</span></span>
+<span>  tidy<span class="op">=</span><span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># fileEnconding specifies character encoding as UTF-8</span></span>
+<span><span class="co"># rather than Unicode characters; otherwise unicode</span></span>
+<span><span class="co"># characters are added to column name</span></span>
+<span><span class="va">ISO</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"MW_ISO.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span>, sep <span class="op">=</span> <span class="st">","</span>, stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    fileEncoding <span class="op">=</span> <span class="st">"UTF-8-BOM"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># making ggplot2 respect the Group order</span></span>
+<span><span class="va">ISO</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">ISO</span><span class="op">$</span><span class="va">Group</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">ISO</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ISO</span> <span class="op">&lt;-</span> <span class="va">ISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>Group <span class="op">=</span> <span class="fu">fct_relevel</span><span class="op">(</span><span class="va">Group</span>, <span class="st">"El Molo"</span>, <span class="st">"Turkana"</span>, <span class="st">"Webuye"</span>,</span>
+<span>        <span class="st">"Luhya"</span>, <span class="st">"Luo"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">ISO</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"El Molo"</span>, <span class="st">"Turkana"</span>, <span class="st">"Luhya (Webuye)"</span>,</span>
+<span>    <span class="st">"Luhya (Port Vict.)"</span>, <span class="st">"Luo (Port Vict.)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># fieldwork site location</span></span>
+<span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"workplaces.txt"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#graphical settings for map</span></span>
+<span><span class="va">map_theme</span> <span class="op">&lt;-</span> <span class="fu">theme</span><span class="op">(</span>axis.text<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.title<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,<span class="co">#and for axis titles</span></span>
+<span>        panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>, </span>
+<span>        panel.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span>,</span>
+<span>        plot.background <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        panel.grid.major <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.ticks<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,  </span>
+<span>        panel.border <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, fill<span class="op">=</span><span class="cn">NA</span>, linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#graphical settings for ggplot</span></span>
+<span><span class="va">my_theme</span> <span class="op">&lt;-</span> <span class="fu">theme</span><span class="op">(</span></span>
+<span>  axis.text<span class="op">=</span><span class="fu">element_text</span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span>,colour<span class="op">=</span><span class="st">"black"</span><span class="op">)</span>,</span>
+<span>  axis.ticks<span class="op">=</span><span class="fu">element_line</span> <span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">0.5</span>, colour<span class="op">=</span><span class="st">"black"</span><span class="op">)</span>, </span>
+<span>  axis.title<span class="op">=</span><span class="fu">element_text</span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,</span>
+<span>  panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  panel.background <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  panel.grid.major <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  legend.key<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  panel.border <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, fill<span class="op">=</span><span class="cn">NA</span>, linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use first row data as column names for transposition</span></span>
+<span><span class="va">header.true</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">df</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span>,<span class="op">]</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="producing-the-location-map-figure-1" class="level1"><h1>Producing the location map (Figure 1)</h1>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa</span> <span class="op">&lt;-</span> <span class="fu">ne_countries</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"countries"</span>, continent <span class="op">=</span> <span class="st">"Africa"</span>,</span>
+<span>    scale <span class="op">=</span> <span class="st">"medium"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="va">lakes</span> <span class="op">&lt;-</span> <span class="fu">ne_download</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, category <span class="op">=</span> <span class="st">"physical"</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"lakes"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="va">lakes</span> <span class="op">&lt;-</span> <span class="fu">ne_load</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, category <span class="op">=</span> <span class="st">"physical"</span>, type <span class="op">=</span> <span class="st">"lakes"</span>,</span>
+<span>    returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="co"># tomorrow start by trying to add lakes to map to do: inset</span></span>
+<span><span class="va">inset</span> <span class="op">&lt;-</span> <span class="va">africa</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"grey87"</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">africa</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Kenya"</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"grey70"</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">coord_sf</span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">22</span>, <span class="fl">55</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">40</span>, <span class="fl">43</span><span class="op">)</span>, expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_rect</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xmin <span class="op">=</span> <span class="fl">31</span>, xmax <span class="op">=</span> <span class="fl">43</span>, ymin <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, ymax <span class="op">=</span> <span class="fl">5.6</span><span class="op">)</span>,</span>
+<span>        color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">NA</span>, linewidth <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span> <span class="va">map_theme</span></span>
+<span></span>
+<span></span>
+<span><span class="va">main</span> <span class="op">&lt;-</span> <span class="va">africa</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"grey87"</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">africa</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Kenya"</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"grey70"</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">lakes</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sites</span>,</span>
+<span>    <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">coord_sf</span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">31</span>, <span class="fl">43</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,</span>
+<span>    <span class="fl">5.6</span><span class="op">)</span>, expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">africa</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Kenya"</span><span class="op">)</span><span class="op">)</span>, <span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">name_long</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>    fontface <span class="op">=</span> <span class="st">"bold"</span>, nudge_x <span class="op">=</span> <span class="fl">0.6</span>, nudge_y <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">lakes</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lake Victoria"</span>, <span class="st">"Lake Turkana"</span><span class="op">)</span><span class="op">)</span>, <span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lake \n Victoria"</span>,</span>
+<span>    <span class="st">"Lake \nTurkana"</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.5</span>, nudge_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span>, nudge_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>,</span>
+<span>    <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sites</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lat</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"El Molo"</span>, <span class="st">"Luo | Luhya"</span>, <span class="st">"Luhya"</span>, <span class="st">"Turkana"</span><span class="op">)</span>,</span>
+<span>    fontface <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span>, nudge_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.3</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>    nudge_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">1</span>, <span class="fl">0.2</span>, <span class="fl">0.05</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.9</span><span class="op">)</span> <span class="op">+</span> <span class="fu">annotation_north_arrow</span><span class="op">(</span>location <span class="op">=</span> <span class="st">"tl"</span>,</span>
+<span>    which_north <span class="op">=</span> <span class="st">"true"</span>, height <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.5</span>, <span class="st">"cm"</span><span class="op">)</span>, width <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.4</span>,</span>
+<span>        <span class="st">"cm"</span><span class="op">)</span>, pad_x <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.4</span>, <span class="st">"cm"</span><span class="op">)</span>, pad_y <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.4</span>, <span class="st">"cm"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">annotation_scale</span><span class="op">(</span>location <span class="op">=</span> <span class="st">"bl"</span>, style <span class="op">=</span> <span class="st">"bar"</span><span class="op">)</span> <span class="op">+</span> <span class="va">map_theme</span></span>
+<span></span>
+<span><span class="co"># inset rectangle</span></span>
+<span></span>
+<span><span class="va">main</span> <span class="op">+</span> <span class="fu">annotation_custom</span><span class="op">(</span><span class="fu">ggplotGrob</span><span class="op">(</span><span class="va">inset</span><span class="op">)</span>, xmin <span class="op">=</span> <span class="fl">37.5</span>, xmax <span class="op">=</span> <span class="fl">44.5</span>,</span>
+<span>    ymin <span class="op">=</span> <span class="fl">1.5</span>, ymax <span class="op">=</span> <span class="fl">5.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/map-1.pdf" class="img-fluid" width="301"></p>
+</div>
+</div>
+</section><section id="addressing-collinearity" class="level1"><h1>Addressing collinearity</h1>
+<p>The STA parameters initially considered here are described in <span class="citation" data-cites="iso/tc2132021">ISO/TC 213 (<a href="#ref-iso/tc2132021" role="doc-biblioref">2021</a>)</span>:</p>
+<ol type="1">
+<li>skewness (Ssk);</li>
+<li>maximum peak height (Sp);</li>
+<li>maximum height (Sz);</li>
+<li>extreme peak height (Sxp);</li>
+<li>root mean square gradient (Sdq);</li>
+<li>developed interfacial area ratio (Sdr);</li>
+<li>pit void volume (Vvv);</li>
+<li>five-point pit height (S5v);</li>
+<li>mean dale area (Sda);</li>
+<li>mean dale volume (Sdv)</li>
+</ol>
+<p>Some of the STA variables likely capture the same underlying variation. Thus, we expect some of the variables to be highly correlated <span class="citation" data-cites="ungar2019">(<a href="#ref-ungar2019" role="doc-biblioref">Ungar, Livengood, &amp; Crittenden, 2019</a>)</span>, which affects general linear models since it violates one of the main assumptions which states that dependent variables will be independent from each other, i.e.&nbsp;that there will be no multicollinearity <span class="citation" data-cites="field2012">(<a href="#ref-field2012" role="doc-biblioref">Field, Miles, &amp; Field, 2012, p. 274</a>)</span>. Here, a <a href="http://www.sthda.com/english/wiki/visualize-correlation-matrix-using-correlogram">correlogram</a> was used to evaluate the correlation matrix.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dISO</span> <span class="op">&lt;-</span> <span class="va">ISO</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Group</span>, <span class="va">Asfc</span>, <span class="va">epLsar</span>, <span class="va">HAsfc</span>, <span class="va">Tfv</span>, <span class="va">Ssk</span>, <span class="va">Sp</span>, <span class="va">Sz</span>,</span>
+<span>        <span class="va">Sxp</span>, <span class="va">Sdq</span>, <span class="va">Sdr</span>, <span class="va">Vvv</span>, <span class="va">S5v</span>, <span class="va">Sda</span>, <span class="va">Sdv</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">M</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cor.mtest</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mat</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span>
+<span>    <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span>
+<span>    <span class="va">p.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="va">n</span>, <span class="va">n</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">p.mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>            <span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">mat</span><span class="op">[</span>, <span class="va">i</span><span class="op">]</span>, <span class="va">mat</span><span class="op">[</span>, <span class="va">j</span><span class="op">]</span>, <span class="va">...</span><span class="op">)</span></span>
+<span>            <span class="va">p.mat</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">p.mat</span><span class="op">[</span><span class="va">j</span>, <span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">tmp</span><span class="op">$</span><span class="va">p.value</span></span>
+<span>        <span class="op">}</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">p.mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">p.mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span>
+<span>    <span class="va">p.mat</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co"># matrix of the p-value of the correlation</span></span>
+<span><span class="va">p.mat</span> <span class="op">&lt;-</span> <span class="fu">cor.mtest</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#BB4444"</span>, <span class="st">"#EE9988"</span>, <span class="st">"#FFFFFF"</span>, <span class="st">"#77AADD"</span>,</span>
+<span>    <span class="st">"#4477AA"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">corrplot</span><span class="op">(</span><span class="va">M</span>, method <span class="op">=</span> <span class="st">"color"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/col.html">col</a></span><span class="op">(</span><span class="fl">200</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"lower"</span>,</span>
+<span>    tl.col <span class="op">=</span> <span class="st">"black"</span>, addCoef.col <span class="op">=</span> <span class="st">"black"</span>, p.mat <span class="op">=</span> <span class="va">p.mat</span>, sig.level <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>    insig <span class="op">=</span> <span class="st">"blank"</span>, diag <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/matrix-1.pdf" class="img-fluid" width="528"></p>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remove variables with high correlation</span></span>
+<span><span class="va">dISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sdr</span>, <span class="va">Vvv</span>, <span class="va">S5v</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Squares with colour are significant correlations (<span class="math inline">\(p&lt;0.01\)</span>) and we observed 3 correlations above 0.90, confirming collinearity. We removed 3 variables from the analyses to avoid this issue (<em>Sdr, Vvv, S5v</em>). In addition, we observe several medium to strong correlations, which suggest an underlying pattern of variation and support a multivariate approach.</p>
+</section><section id="visualization-and-descriptive-statistics" class="level1"><h1>Visualization and descriptive statistics</h1>
+<p>Dotplots<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> were used to visually examine the data, and it’s interesting that there is one clear outlier for Sz, which explains the high standard deviation of this variable for the group including it. Descriptive statistics reported include standard and robust measures of both central tendency and dispersion (mean and SD; median and IQR).</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grouped.data</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">gather</span><span class="op">(</span>key <span class="op">=</span> <span class="st">"variable"</span>, value <span class="op">=</span> <span class="st">"value"</span>, <span class="va">Asfc</span><span class="op">:</span><span class="va">Sdv</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">variable</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Colour-blind palette</span></span>
+<span><span class="va">cbbPalette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#009E73"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#0072B2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># dotplots</span></span>
+<span><span class="va">dotplot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">grouped.data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, colour <span class="op">=</span> <span class="va">Group</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">Group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_dotplot</span><span class="op">(</span>stackdir <span class="op">=</span> <span class="st">"center"</span>, stackgroups <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    binpositions <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_colour_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_y_continuous</span><span class="op">(</span><span class="cn">NULL</span>,</span>
+<span>    breaks <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">variable</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="va">my_theme</span></span>
+<span></span>
+<span><span class="fu">reposition_legend</span><span class="op">(</span><span class="va">dotplot</span>, <span class="st">"center"</span>, panel <span class="op">=</span> <span class="st">"panel-4-3"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/summary-1.pdf" class="img-fluid" width="768"></p>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># summary table</span></span>
+<span><span class="va">sISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">get_summary_stats</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"common"</span>, show <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"mean"</span>,</span>
+<span>        <span class="st">"sd"</span>, <span class="st">"median"</span>, <span class="st">"iqr"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">sISO</span>, format <span class="op">=</span> <span class="st">"latex"</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>, longtable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"summary statistics"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"repeat_header"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+</div>
+</section><section id="inferential-statistics" class="level1"><h1>Inferential Statistics</h1>
+<p>A <em>multivariate analysis of variance</em> (MANOVA) was used to investigate variation in central tendency between groups, since it takes into consideration any relationship between the dependent variables.</p>
+<section id="assumptions" class="level2"><h2 class="anchored" data-anchor-id="assumptions">Assumptions</h2>
+<p>The assumptions of the MANOVA are <span class="citation" data-cites="field2012">(<a href="#ref-field2012" role="doc-biblioref">Field et al., 2012, p. 717</a>)</span>:</p>
+<ol type="1">
+<li><p>Independence</p></li>
+<li><p>Random Sampling</p></li>
+<li><p>Uni and multivariate normality (within groups)</p></li>
+<li><p>Uni and multivariate homogeneity of variances</p></li>
+<li>
+<p>Linearity (linear relationships among all pairs of dependent variables, all pairs of covariates, and all dependent variable-covariate pairs in each cell)</p>
+<p>ADDITIONAL LIMITATIONS</p>
+</li>
+<li><p>Unequal sample sizes (when cells in a factorial MANOVA have different sample sizes, the sum of squares for effect plus error does not equal the total sum of squares. This causes tests of main effects and interactions to be correlated)</p></li>
+<li><p>Uni and multivariate outliers (may produce either a Type I or Type II error and give no indication as to which type of error is occurring in the analysis)</p></li>
+</ol>
+<p><strong>Independence</strong> and <strong>linearity</strong> were addressed with the correlogram. <strong>Sample sizes</strong> are not too unequal, but small. Specifically, the sample size of each group is inferior to the number of variables, which is a risk when conducting multivariate analyses. Next, we will examine the outliers, normality and homocedasticity of the data. Conducting multiple statistical tests increases the chances of Type I error; when necessary, we applied a false discovery rate (FDR) correction, also known as Benjamini &amp; Hochberg.</p>
+<p>The <code>aq.plot()</code> function from the <code>mvoutlier</code> package <span class="citation" data-cites="filzmoser">(<a href="#ref-filzmoser" role="doc-biblioref">Filzmoser &amp; Gschwandter, n.d.</a>)</span> identifies <strong>multivariate outliers</strong> by plotting the ordered squared robust Mahalanobis distances of the observations against the empirical distribution function of the MD2i. The function produces 4 graphs that identify multivariate outliers in red. Univariate outliers were identified in the graphs above.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outliers</span> <span class="op">&lt;-</span> <span class="fu">aq.plot</span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Projection to the first and second robust principal components.
+Proportion of total variation (explained variance): 0.9994162</code></pre>
+</div>
+<div class="cell-output-display">
+<p><embed src="images/multi%20outliers-1.pdf" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>To test for <strong>multivariate normality</strong> within groups, we used the <code>mshapiro.test</code> in the <code>mvnormtest</code> package <span class="citation" data-cites="jarek2012">(<a href="#ref-jarek2012" role="doc-biblioref">Jarek, 2012</a>)</span>, which suggests that there is no multivariate normality. We also assessed multinormality graphically by examining plots of the ordered Mahalanobis distances (D<sup>2</sup>) and paired chi-squared values, <span class="math inline">\(\chi\)</span> <sup>2</sup>, of the model residuals. If the data are multivariate normal, the plot should form a relatively straight, diagonal line. The lack of multivariate normality is not surprising considering that the scales of measurement are very distinct between variables.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform the multivariate Shapiro-Wilk test within each</span></span>
+<span><span class="co"># group</span></span>
+<span><span class="va">mshapiro_results</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">do</span><span class="op">(</span><span class="fu">tidy</span><span class="op">(</span><span class="fu">mvnormtest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mvnormtest/man/mshapiro.test.html">mshapiro.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu">select</span><span class="op">(</span><span class="va">.</span>, <span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">mshapiro_results</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>,</span>
+<span>    booktabs <span class="op">=</span> <span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">"Multinormality tests"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="st">"hold_position"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cqplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">dISO</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Chi-Square Q-Q Plot of MANOVA Model Residuals"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/multi%20normality-1.pdf" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p>For <strong>univariate normality</strong>, we used <code>shapiro.test</code>, and found 4 significant tests at <code>p&lt;0.01</code>, suggesting most variables are normal within groups.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">uni_normal</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">variable</span>, <span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">do</span><span class="op">(</span><span class="fu">tidy</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">color.me</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">uni_normal</span><span class="op">$</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.01</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">uni_normal</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    longtable <span class="op">=</span> <span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">"Uninormality tests"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"repeat_header"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="va">color.me</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"gray!6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+</div>
+<p>One may use Box’s test to test for multivariate homoscedasticity, but this test is very sensitive to violations of normality, leading to rejection in most typical cases. <span class="citation" data-cites="field2012">Field et al. (<a href="#ref-field2012" role="doc-biblioref">2012, p. 275</a>)</span> does not recommend a formal test for <strong>multivariate homocedasticity</strong> but simply to compare values within covariance matrices. These matrices are quite different, probably as a result, once again, of the difference in scales between variables.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">multihomo</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">group_map</span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\\begin{landscape}\n"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><p>To asses <strong>univariate equality of variances</strong>, we used <code>levene_test</code> from the <code>rstatix</code> package <span class="citation" data-cites="kassambara2023">(<a href="#ref-kassambara2023" role="doc-biblioref">Kassambara, 2023</a>)</span>. Even though the test was applied to check the assumptions of the MANOVA, the results already suggest that there are no significant differences in dispersion, something that was investigated in previous studies of living human dental microwear <span class="citation" data-cites="ungar2019">(<a href="#ref-ungar2019" role="doc-biblioref">Ungar et al., 2019</a>)</span>.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">uni_homocedast</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">levene_test</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">Group</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">uni_homocedast</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>,</span>
+<span>    booktabs <span class="op">=</span> <span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">"Unihomocedasticity tests"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hold_position"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+</div>
+</section><section id="main-test" class="level2"><h2 class="anchored" data-anchor-id="main-test">Main Test</h2>
+<p>Bottom line, the data violates several of the assumptions, and non-parametric alternatives should be used. An alternative is to conduct a <strong>permutational multivariate analysis of variance</strong>&nbsp;(<strong>PERMANOVA</strong>) using the <code>adonis.II</code> function in the <code>RVAideMemoire</code> package <span class="citation" data-cites="herve2023">(<a href="#ref-herve2023" role="doc-biblioref">Herve, 2023</a>)</span>, a non-parametric test used to test whether the centroids and dispersion of a categorical variable are equivalent for all groups <span class="citation" data-cites="anderson2017">(<a href="#ref-anderson2017" role="doc-biblioref">Anderson, 2017</a>)</span>.</p>
+<p>Another issue with the data is that <span class="math inline">\(n&gt;p\)</span>, i.e.&nbsp;number of samples per group (9 for El Molo, 7 for Turkana, 7 for the Luhya from Webuye and 6 for the Luhya from Port Victoria and 8 for the Luo) is lower than the number of dependent variables (11). This stops us from applying some corrections (such as MCD), and decreases the power of the test, and thus, results should be interpreted cautiously.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">permanova</span> <span class="op">&lt;-</span> <span class="fu">RVAideMemoire</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RVAideMemoire/man/adonis.II.html">adonis.II</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span> <span class="op">~</span></span>
+<span>    <span class="va">Group</span>, data <span class="op">=</span> <span class="va">dISO</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">es_permanova</span> <span class="op">&lt;-</span> <span class="fu">effectsize</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/effectsize/reference/eta_squared.html">eta_squared</a></span><span class="op">(</span><span class="va">permanova</span>, partial <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">permanova</span> <span class="op">&lt;-</span> <span class="va">permanova</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>partialEta2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu">row_number</span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">es_permanova</span><span class="op">$</span><span class="va">Eta2_partial</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>        <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rename</span><span class="op">(</span>`p-value` <span class="op">=</span> <span class="st">"Pr(&gt;F)"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>knitr.kable.NA <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">permanova</span>, caption <span class="op">=</span> <span class="st">"Permanova Results with 999 permutations"</span>,</span>
+<span>    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hold_position"</span><span class="op">)</span>, full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+</div>
+<p>The interpretation of partial-<span class="math inline">\(\eta\)</span> <sup>2</sup> is, by convention, that 0.01, 0.06, and 0.14 correspond to small, medium, and large effects, respectively <span class="citation" data-cites="cohen1988">(<a href="#ref-cohen1988" role="doc-biblioref">Cohen, 1988</a>)</span>. Thus, we can state that group has a large effect on the dependent variable, such that it accounts for a meaningful part of the variance in some linear combination of the dependent variables.</p>
+</section><section id="follow-up-tests" class="level2"><h2 class="anchored" data-anchor-id="follow-up-tests">Follow-up tests</h2>
+<p>To follow up the MANOVA, we applied pairwise PERMANOVA’s on the distance matrix between groups, univariate ANOVA’s on rank-transformed data, and linear discriminant analyses (LDA). Pairwise PERMANOVA’s inform on the multivariate distances between groups, univariate ANOVA’s inform on variation driven by a single variable, and LDA finds a linear combination of features that characterizes or separates the classes of objects <span class="citation" data-cites="field2012">(<a href="#ref-field2012" role="doc-biblioref">Field et al., 2012</a>)</span>. As for the assumptions tests, we applied a false discovery rate (FDR) correction to control for the increase of Type I error when multiple testing.</p>
+<section id="pairwise-permanova" class="level3"><h3 class="anchored" data-anchor-id="pairwise-permanova">Pairwise PERMANOVA</h3>
+<p>Pairwise PERMANOVA was conducted using the <code>pairwise.perm.manova</code> function from the <code>RVAideMemoire</code> package on a distance matrix produced using <code>vegdist</code> function from the <code>vegan</code> package.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_dml</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>,</span>
+<span>    binary <span class="op">=</span> <span class="cn">FALSE</span>, diag <span class="op">=</span> <span class="cn">TRUE</span>, upper <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pairwise_permanova</span> <span class="op">&lt;-</span> <span class="fu">pairwise.perm.manova</span><span class="op">(</span>resp <span class="op">=</span> <span class="va">dist_dml</span>, fact <span class="op">=</span> <span class="va">dISO</span><span class="op">$</span><span class="va">Group</span>,</span>
+<span>    test <span class="op">=</span> <span class="st">"Wilks"</span>, nperm <span class="op">=</span> <span class="fl">999</span>, progress <span class="op">=</span> <span class="cn">FALSE</span>, p.method <span class="op">=</span> <span class="st">"fdr"</span>,</span>
+<span>    F <span class="op">=</span> <span class="cn">TRUE</span>, R2 <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Extract the relevant information and create a data frame</span></span>
+<span><span class="va">pairwisePermanova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>group1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    each <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span><span class="op">)</span>, group2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span><span class="op">)</span>, `statistic(pseudo-F)` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">F.value</span><span class="op">)</span>,</span>
+<span>    <span class="fl">3</span><span class="op">)</span>, `adjusted p-value` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>,</span>
+<span>    <span class="fl">3</span><span class="op">)</span>, R2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">R2.value</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filter out rows with NA values and first column with</span></span>
+<span><span class="co"># numbers</span></span>
+<span><span class="va">pairwisePermanova</span> <span class="op">&lt;-</span> <span class="va">pairwisePermanova</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">color.me</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">pairwisePermanova</span><span class="op">$</span><span class="va">`adjusted p-value`</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">pairwisePermanova</span>, format <span class="op">=</span> <span class="st">"latex"</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="va">pairwise_permanova</span><span class="op">$</span><span class="va">method</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hold_position"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="va">color.me</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"gray!6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+</div>
+<p>Interpretation of <span class="math inline">\(R\)</span> <sup>2</sup> is, by convention, that 0.01, 0.09, and 0.25 correspond to small, medium, and large effects, respectively <span class="citation" data-cites="cohen1988">(<a href="#ref-cohen1988" role="doc-biblioref">Cohen, 1988</a>)</span>. We found two significant comparisons, between the El Molo and the Turkana, and the El Molo and the Luo (Port Victoria).</p>
+</section><section id="univariate-anova" class="level3"><h3 class="anchored" data-anchor-id="univariate-anova">Univariate ANOVA</h3>
+<p>As the data does not follow ANOVA assumptions, namely normality, we rank-transformed the data, also known as a Kruskal Wallis test, for which we used the <code>kruskal_test</code> function from the <code>rstatix</code> package.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">followup_kruskal</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kruskal_test</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">adjust_pvalue</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># followup_kruskal &lt;- followup_kruskal[,</span></span>
+<span><span class="co"># !names(followup_kruskal) %in% '.y.']</span></span>
+<span></span>
+<span><span class="va">followup_effsize</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kruskal_effsize</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">Group</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">followup_effsize</span> <span class="op">&lt;-</span> <span class="va">followup_effsize</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">variable</span>, <span class="va">effsize</span>, <span class="va">magnitude</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">merged_data</span> <span class="op">&lt;-</span> <span class="va">followup_kruskal</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">left_join</span><span class="op">(</span><span class="va">followup_effsize</span>, by <span class="op">=</span> <span class="st">"variable"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">variable</span>, <span class="va">n</span>, <span class="va">df</span>, <span class="va">statistic</span>, <span class="va">p.adj</span>, <span class="va">method</span>, <span class="va">effsize</span>,</span>
+<span>        <span class="va">magnitude</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">merged_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"variable"</span>, <span class="st">"n"</span>, <span class="st">"df"</span>, <span class="st">"statistic (H)"</span>,</span>
+<span>    <span class="st">"adjusted p-value"</span>, <span class="st">"method"</span>, <span class="st">"eta-squared"</span>, <span class="st">"magnitude"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">color.me</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">merged_data</span><span class="op">$</span><span class="va">`adjusted p-value`</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert the R object into a LaTeX table</span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">merged_data</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>,</span>
+<span>    booktabs <span class="op">=</span> <span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">"Univariate Kruskal-Wallis"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="st">"hold_position"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="va">color.me</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"gray!6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+</div>
+<p>At <code>p &lt; 0.05</code>, only <em>Ssk</em> was significantly different between groups, although other 3 variables – <em>Hasfc</em>, <em>Sxp</em>, and <em>Tfv</em> also have large effect sizes. In our previous study <span class="citation" data-cites="correia2021">(<a href="#ref-correia2021" role="doc-biblioref">Correia et al., 2021</a>)</span>, <em>Hasfc</em> and <em>Tfv</em> were also not significantly different with large effect sizes .</p>
+<p>Next, we conducted pairwise comparisons for the significantly different variable <em>Ssk</em>. We used the function <code>dunn_test</code> from the <code>rstatix</code> package, which respects the ranked data of Kruskall-Wallis, while controlling for multiple comparisons. We chose Dunn’s test over Games-Howells because the first addresses distribution issues, whereas the second is more appropriate when there is no homogeneity of variances, which is not as problematic here (see @ref(assumptions)). Finally, we calculated Hedge’s <em>g</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> as a measure of effect size for each pairwise comparison.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pairwise</span> <span class="op">&lt;-</span> <span class="fu">dunn_test</span><span class="op">(</span><span class="va">dISO</span>, <span class="va">Ssk</span> <span class="op">~</span> <span class="va">Group</span>, p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>,</span>
+<span>    detailed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">pairwise_effsize</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rstatix</span><span class="fu">::</span><span class="fu"><a href="https://rpkgs.datanovia.com/rstatix/reference/cohens_d.html">cohens_d</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Ssk</span> <span class="op">~</span> <span class="va">Group</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        hedges.correction <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pairwise_effsize</span> <span class="op">&lt;-</span> <span class="va">pairwise_effsize</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span>, <span class="va">effsize</span>, <span class="va">magnitude</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">merged_data_effsize</span> <span class="op">&lt;-</span> <span class="va">pairwise</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">left_join</span><span class="op">(</span><span class="va">pairwise_effsize</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group1"</span>, <span class="st">"group2"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">select</span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span>, <span class="va">estimate</span>, <span class="va">statistic</span>, <span class="va">p.adj</span>, <span class="va">effsize</span>,</span>
+<span>        <span class="va">magnitude</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">merged_data_effsize</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group1"</span>, <span class="st">"group2"</span>, <span class="st">"mean difference"</span>,</span>
+<span>    <span class="st">"statistic (z)"</span>, <span class="st">"adjusted p-value"</span>, <span class="st">"hedge's g"</span>, <span class="st">"magnitude"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">color.me</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">merged_data_effsize</span><span class="op">$</span><span class="va">`adjusted p-value`</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kbl</span><span class="op">(</span><span class="va">merged_data_effsize</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>,</span>
+<span>    booktabs <span class="op">=</span> <span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">"Pairwise comparisons for Ssk using Dunn's test"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">kable_styling</span><span class="op">(</span>latex_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hold_position"</span>, <span class="st">"scale_down"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="va">color.me</span>, bold <span class="op">=</span> <span class="cn">TRUE</span>, background <span class="op">=</span> <span class="st">"gray!6"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">row_spec</span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># boxplot</span></span>
+<span><span class="va">pairwise</span> <span class="op">&lt;-</span> <span class="va">pairwise</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Group"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">dISO</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">Ssk</span>, x <span class="op">=</span> <span class="va">Group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>,</span>
+<span>    show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">stat_pvalue_manual</span><span class="op">(</span><span class="va">pairwise</span>, label <span class="op">=</span> <span class="st">"p = {scales::pvalue(p.adj)}"</span>,</span>
+<span>        tip.length <span class="op">=</span> <span class="fl">0.01</span>, size <span class="op">=</span> <span class="fl">2.5</span>, hide.ns <span class="op">=</span> <span class="st">"p.adj"</span>, step.increase <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="va">my_theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/followup%20pairwise-1.pdf" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>For the <em>Ssk</em> variable, we observe that 4 comparisons are significantly different, Interestingly, most comparisons have large or moderate effect sizes, suggesting that the sample size is too low to detect more significant comparisons. The one exception is the negligible effect size in the comparison between the Turkana and Luhya (Webuye).</p>
+</section><section id="canonical-discriminant-analysis" class="level3"><h3 class="anchored" data-anchor-id="canonical-discriminant-analysis">Canonical discriminant analysis</h3>
+<p>Canonical discriminant analyses (CDA) find a linear combination of features that characterizes or separates two or more classes of objects or events. This approach makes important demands in terms of data distribution, and sample sizes. However, alternatives, such as regularized or quadratic discriminant analyses, are more adequate for predictive rather than descriptive analyses<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. In addition, even when dealing with non-normal and high dimensional data, CDA axis retain discriminality between classes although cut-off points between classes may be incorrect. In other words, CDA on non-normal data cannot be generalized to other data <span class="citation" data-cites="hastie2009">(<a href="#ref-hastie2009" role="doc-biblioref">Hastie, Tibshirani, &amp; Friedman, 2009, p. 110</a>)</span>. Here, CDA was conducted using the <code>candisc</code> function from the <code>candisc</code> package, while rLDA was conducted using the <code>Slda</code> function from the <code>HiDimDA</code> package with the goal of informing the reliability of the CDA approach<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ISOmanova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, <span class="va">dISO</span><span class="op">)</span></span>
+<span><span class="co"># summary(manova(ISOmanova), test = 'Wilks')</span></span>
+<span></span>
+<span><span class="va">ISO.can</span> <span class="op">&lt;-</span> <span class="fu">candisc</span><span class="op">(</span><span class="va">ISOmanova</span><span class="op">)</span></span>
+<span><span class="va">ISO.can</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+Canonical Discriminant Analysis for Group:
+
+   CanRsq Eigenvalue Difference Percent Cumulative
+1 0.64629    1.82717    0.32596 41.2101     41.210
+2 0.60019    1.50121    0.32596 33.8584     75.068
+3 0.45336    0.82935    0.32596 18.7052     93.774
+4 0.21634    0.27606    0.32596  6.2263    100.000
+
+Test of H0: The canonical correlations in the 
+current row and all that follow are zero
+
+  LR test stat approx F numDF denDF  Pr(&gt; F)   
+1      0.06058  2.11593    44 86.12 0.001524 **
+2      0.17127  1.87334    30 68.19 0.016817 * 
+3      0.42838  1.40763    18 48.00 0.171547   
+4      0.78366  0.86268     8 25.00 0.559555   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for the scores</span></span>
+<span><span class="va">scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Group <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Group</span>,</span>
+<span>  Can1 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Can1</span>,</span>
+<span>  Can2 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Can2</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Extract the relevant information from the candisc object</span></span>
+<span><span class="va">loadings_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">ISO.can</span><span class="op">$</span><span class="va">structure</span><span class="op">)</span>,</span>
+<span>  Can1 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">structure</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<span>  Can2 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">structure</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate the percentage of variance explained by each canonical variable</span></span>
+<span><span class="va">eigenvalues</span> <span class="op">&lt;-</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">eigenvalues</span></span>
+<span><span class="va">total_variance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">eigenvalues</span><span class="op">)</span></span>
+<span><span class="va">variance_explained</span> <span class="op">&lt;-</span> <span class="va">eigenvalues</span> <span class="op">/</span> <span class="va">total_variance</span> <span class="op">*</span> <span class="fl">100</span></span>
+<span></span>
+<span><span class="co"># Define axis titles including the percentage of variance explained</span></span>
+<span><span class="va">x_axis_title</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Can1 ("</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">variance_explained</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>, <span class="st">"%)"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="va">y_axis_title</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Can2 ("</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">variance_explained</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>, <span class="st">"%)"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate centroids for each group</span></span>
+<span><span class="va">centroids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Can1</span>, <span class="va">Can2</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, <span class="va">scores_df</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the biplot using ggplot2</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">scores_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Can1</span>, y <span class="op">=</span> <span class="va">Can2</span>, color <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">stat_ellipse</span><span class="op">(</span>data <span class="op">=</span> <span class="va">scores_df</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can1</span>, y <span class="op">=</span> <span class="va">Can2</span>, fill <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>, </span>
+<span>    geom <span class="op">=</span> <span class="st">"polygon"</span>, level <span class="op">=</span> <span class="fl">0.68</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add ellipses for group</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">centroids</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can1</span>, y <span class="op">=</span> <span class="va">Can2</span>, label <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">6</span>, color <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add "+" symbols for centroids</span></span>
+<span>  <span class="fu">geom_text_repel</span><span class="op">(</span>data <span class="op">=</span> <span class="va">loadings_df</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can1</span> <span class="op">*</span> <span class="fl">6</span>, y <span class="op">=</span> <span class="va">Can2</span> <span class="op">*</span> <span class="fl">6</span>, label <span class="op">=</span> <span class="va">Variable</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">3</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, box.padding <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_segment</span><span class="op">(</span>data <span class="op">=</span> <span class="va">loadings_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                                       xend <span class="op">=</span> <span class="va">Can1</span><span class="op">*</span><span class="fl">5.5</span>, yend <span class="op">=</span> <span class="va">Can2</span><span class="op">*</span><span class="fl">5.5</span><span class="op">)</span>, </span>
+<span>               arrow <span class="op">=</span> <span class="fu">arrow</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"open"</span>, length <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>               linewidth <span class="op">=</span> <span class="fl">0.5</span>, lineend <span class="op">=</span> <span class="st">"round"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">centroids</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can1</span>, y <span class="op">=</span> <span class="va">Can2</span>, label <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="va">cbbPalette</span>, fontface <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    nudge_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.0</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">1.0</span><span class="op">)</span>,</span>
+<span>    nudge_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">1.2</span>, <span class="op">-</span><span class="fl">1.0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add group labels</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">coord_fixed</span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">my_theme</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_axis_title</span>, y <span class="op">=</span> <span class="va">y_axis_title</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">guides</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/LD1LD2-1.pdf" class="img-fluid" width="672"></p>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">heplot</span><span class="op">(</span><span class="va">ISO.can</span>, var.col <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">TRUE</span>, fill.alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/LD1LD2-2.pdf" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vector scale factor set to  6.435736 </code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ISO.can</span>, which<span class="op">=</span><span class="fl">1</span>, col <span class="op">=</span> <span class="va">cbbPalette</span>, cex.axis <span class="op">=</span> <span class="fl">0.7</span>, cex.lab <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>     points.1d<span class="op">=</span><span class="cn">TRUE</span>, rev.axes <span class="op">=</span> <span class="cn">TRUE</span>,pch <span class="op">=</span> <span class="fl">15</span><span class="op">:</span><span class="fl">19</span>,</span>
+<span>     var.lwd <span class="op">=</span> <span class="fl">2</span>, var.col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/LD1LD2-3.pdf" class="img-fluid" width="672"></p>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ISO.can</span>, which<span class="op">=</span><span class="fl">2</span>, col <span class="op">=</span> <span class="va">cbbPalette</span>, cex.axis <span class="op">=</span> <span class="fl">0.7</span>, cex.lab <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>     points.1d<span class="op">=</span><span class="cn">TRUE</span>, rev.axes <span class="op">=</span> <span class="cn">TRUE</span>,pch <span class="op">=</span> <span class="fl">15</span><span class="op">:</span><span class="fl">19</span>,</span>
+<span>     var.lwd <span class="op">=</span> <span class="fl">2</span>, var.col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/LD1LD2-4.pdf" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for the scores</span></span>
+<span><span class="va">scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Group <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Group</span>,</span>
+<span>  Can3 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Can3</span>,</span>
+<span>  Can4 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Can4</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Extract the relevant information from the candisc object</span></span>
+<span><span class="va">loadings_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">ISO.can</span><span class="op">$</span><span class="va">structure</span><span class="op">)</span>,</span>
+<span>  Can3 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">structure</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span>,</span>
+<span>  Can4 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">structure</span><span class="op">[</span>, <span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define axis titles including the percentage of variance explained</span></span>
+<span><span class="va">x_axis_title</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Can3 ("</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">variance_explained</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>, <span class="st">"%)"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="va">y_axis_title</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Can4 ("</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">variance_explained</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>, <span class="st">"%)"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate centroids for each group</span></span>
+<span><span class="va">centroids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">Can3</span>, <span class="va">Can4</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, <span class="va">scores_df</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the biplot using ggplot2</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">scores_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Can3</span>, y <span class="op">=</span> <span class="va">Can4</span>, color <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">stat_ellipse</span><span class="op">(</span>data <span class="op">=</span> <span class="va">scores_df</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can3</span>, y <span class="op">=</span> <span class="va">Can4</span>, fill <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>, </span>
+<span>    geom <span class="op">=</span> <span class="st">"polygon"</span>, level <span class="op">=</span> <span class="fl">0.68</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add ellipses for group</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">centroids</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can3</span>, y <span class="op">=</span> <span class="va">Can4</span>, label <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">6</span>, color <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add "+" symbols for centroids</span></span>
+<span>  <span class="fu">geom_text_repel</span><span class="op">(</span>data <span class="op">=</span> <span class="va">loadings_df</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can3</span> <span class="op">*</span> <span class="fl">6</span>, y <span class="op">=</span> <span class="va">Can4</span> <span class="op">*</span> <span class="fl">6</span>, label <span class="op">=</span> <span class="va">Variable</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">3</span>, hjust <span class="op">=</span> <span class="fl">1</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, box.padding <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_segment</span><span class="op">(</span>data <span class="op">=</span> <span class="va">loadings_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                                       xend <span class="op">=</span> <span class="va">Can3</span><span class="op">*</span><span class="fl">5.5</span>, yend <span class="op">=</span> <span class="va">Can4</span><span class="op">*</span><span class="fl">5.5</span><span class="op">)</span>, </span>
+<span>               arrow <span class="op">=</span> <span class="fu">arrow</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"open"</span>, length <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.2</span>, <span class="st">"cm"</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>               linewidth <span class="op">=</span> <span class="fl">0.5</span>, lineend <span class="op">=</span> <span class="st">"round"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">centroids</span>, <span class="fu">aes</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">Can3</span>, y <span class="op">=</span> <span class="va">Can4</span>, label <span class="op">=</span> <span class="va">Group</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="va">cbbPalette</span>, fontface <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    nudge_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.5</span><span class="op">)</span>,</span>
+<span>    nudge_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Add group labels</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">cbbPalette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">coord_fixed</span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">my_theme</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_axis_title</span>, y <span class="op">=</span> <span class="va">y_axis_title</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">guides</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/LD3LD4-1.pdf" class="img-fluid" width="672"></p>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">heplots</span><span class="fu">::</span><span class="fu"><a href="https://friendly.github.io/heplots/reference/heplot.html">heplot</a></span><span class="op">(</span><span class="va">ISO.can</span>, variables <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, var.col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>       fill <span class="op">=</span> <span class="cn">TRUE</span>, fill.alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><embed src="images/LD3LD4-2.pdf" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vector scale factor set to  3.034421 </code></pre>
+</div>
+</div>
+<p>The CDA finds 4 canonical vectors, but only two have group means that are significantly different. Together, the 2 explain 75% of the variation observed.</p>
+<p>The <strong>HE plot</strong> represent sums-of-squares-and-products matrices for linear hypotheses (<strong>H</strong>) and for error (<strong>E</strong>). In the default scaling, such plots have the visual property that a given effect in the multivariate linear model is significant (by Roy’s maximum root test) if the H ellipse projects anywhere outside the E ellipse. The size of the H ellipse relative to that of the E ellipse is an indication of the magnitude of the multivariate effect for group. The further away variable centroids are from the “Error” circle, the stronger the association between groups and variables <span class="citation" data-cites="friendly2017">(<a href="#ref-friendly2017" role="doc-biblioref">Friendly &amp; Sigal, 2017</a>)</span>.</p>
+<p>In the <strong>biplot</strong>, each data point is represented by its score on the discriminant axis. The variable vectors represent the structure coefficients, i.e.&nbsp;the angle between the vector and the canonical axis represent the correlation of variables with canonical scores, while the vector’s relative length reflect the sum of the squared correlations and hence represent the variable’s contribution to the discrimination between groups <span class="citation" data-cites="field2012">(<a href="#ref-field2012" role="doc-biblioref">Field et al., 2012, p. 738</a>)</span>.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scaled_ISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">scale</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Slda</span> <span class="op">&lt;-</span> <span class="fu">Slda</span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">scaled_ISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span>, grouping <span class="op">=</span> <span class="va">scaled_ISO</span><span class="op">$</span><span class="va">Group</span>,</span>
+<span>    StddzData <span class="op">=</span> <span class="cn">TRUE</span>, ladfun <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span></span>
+<span><span class="va">Slda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Call:
+Slda.default(data = as.matrix(scaled_ISO[, 2:12]), grouping = scaled_ISO$Group, 
+    StddzData = TRUE, ladfun = "classification")
+
+Prior probabilities of groups:
+           El Molo            Turkana     Luhya (Webuye) Luhya (Port Vict.) 
+         0.2432432          0.1891892          0.1891892          0.1621622 
+  Luo (Port Vict.) 
+         0.2162162 
+
+Group means:
+                          Tfv        Ssk        Sxp          Sda
+El Molo             0.6393859  0.8847521  0.1170062 -0.102954091
+Turkana            -0.6359069  0.2133864 -0.5262379 -0.623304691
+Luhya (Webuye)      0.2228006  0.2406359 -0.1939716 -0.166426744
+Luhya (Port Vict.)  0.4264057 -0.3306241 -0.5939760  1.073557817
+Luo (Port Vict.)   -0.6776453 -1.1446475  0.9440333  0.001669996
+
+Coefficients of linear discriminants:
+            LD1        LD2        LD3        LD4
+Tfv -0.39348495 -0.4456465 0.65633995  0.8074253
+Ssk -1.22926872  0.1839274 0.04278755 -0.7178051
+Sxp -0.04260694  0.8299720 0.81804596 -0.2981733
+Sda  0.53782314 -0.7345409 0.17354765 -0.7349617
+Proportion of trace:
+        LD1         LD2         LD3         LD4 
+0.554380573 0.317499098 0.123729033 0.004391297 
+
+Variables kept in discriminant rule:
+[1] "Tfv" "Ssk" "Sxp" "Sda"
+Number of variables kept: 4 </code></pre>
+</div>
+</div>
+<p>‘Slda’ is a shrunken discriminant analysis that finds the coefficients of a linear discriminant rule based on Fisher and Sun’s (2011) estimate and generalizations of Ledoit and Wolf’s (2004) optimal shrunken covariance matrix <span class="citation" data-cites="silva2015">(<a href="#ref-silva2015" role="doc-biblioref">Silva, 2015</a>)</span>. Here, it finds 4 discriminants just as the canonical approach, and keeps 4 variables in the discriminant rule, <em>Tfv</em>, <em>Ssk</em>, <em>Sxp</em>, <em>Sda</em>, which are also the variables with higher impact before. Thus, this approach confirms the discriminatory and descriptive power of the canonical approach. As scores are not produced in these approaches, no further analyses is possible.</p>
+</section></section></section><section id="references" class="level1"><h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-anderson2017" class="csl-entry" role="listitem">
+Anderson, M. J. (2017). <em>Permutational Multivariate Analysis of Variance (PERMANOVA)</em>. John Wiley &amp; Sons, Ltd. <a href="https://doi.org/10.1002/9781118445112.stat07841">https://doi.org/10.1002/9781118445112.stat07841</a>
+</div>
+<div id="ref-carlson2017" class="csl-entry" role="listitem">
+Carlson, D. (2017). <em>Quantitative Methods in Archaeology Using R</em>. Cambridge, UK: Cambridge University Press.
+</div>
+<div id="ref-cohen1988" class="csl-entry" role="listitem">
+Cohen, J. (1988). <em>Statistical power analysis for the behavioral sciences</em> (Second Edi). Hillsdale, New Jersey, USA: Lawrence Erlbaum Associates.
+</div>
+<div id="ref-correia2021" class="csl-entry" role="listitem">
+Correia, M. A., Foley, R., &amp; Lahr, M. M. (2021). Applying dental microwear texture analysis to the living: Challenges and prospects. <em>American Journal of Physical Anthropology</em>, <em>174</em>(3), 542–554. <a href="https://doi.org/10.1002/ajpa.24133">https://doi.org/10.1002/ajpa.24133</a>
+</div>
+<div id="ref-field2012" class="csl-entry" role="listitem">
+Field, A., Miles, J., &amp; Field, Z. (2012). <em>Discovering statistics using r</em>. London, United Kingdom: SAGE Publications Ltd.
+</div>
+<div id="ref-filzmoser" class="csl-entry" role="listitem">
+Filzmoser, P., &amp; Gschwandter, M. (n.d.). <em>Package ’mvoutlier’: Multivariate outlier detection based on robust methods</em>. Retrieved from <a href="https://cran.r-project.org/web/packages/mvoutlier/mvoutlier.pdf">https://cran.r-project.org/web/packages/mvoutlier/mvoutlier.pdf</a>
+</div>
+<div id="ref-friendly2017" class="csl-entry" role="listitem">
+Friendly, M., &amp; Sigal, M. (2017). Graphical methods for multivariate linear models in psychological research: An R tutorial. <em>The Quantitative Methods for Psychology</em>, <em>13</em>(1), 20–45. <a href="https://doi.org/10.20982/tqmp.13.1.p020">https://doi.org/10.20982/tqmp.13.1.p020</a>
+</div>
+<div id="ref-hastie2009" class="csl-entry" role="listitem">
+Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009). <em>The elements of statistical learning</em>. New York, NY: Springer New York. <a href="https://doi.org/10.1007/978-0-387-84858-7">https://doi.org/10.1007/978-0-387-84858-7</a>
+</div>
+<div id="ref-herve2023" class="csl-entry" role="listitem">
+Herve, M. (2023). <em>Package ’RVAideMemoire’</em>. Retrieved from <a href="https://cran.r-project.org/web/packages/RVAideMemoire/RVAideMemoire.pdf">https://cran.r-project.org/web/packages/RVAideMemoire/RVAideMemoire.pdf</a>
+</div>
+<div id="ref-iso/tc2132021" class="csl-entry" role="listitem">
+ISO/TC 213. (2021). <em>ISO 25178-2:2021 geometrical product specifications (GPS) <span></span> surface texture: Areal <span></span> part 2: Terms, definitions and surface texture parameters</em>. Geneva, Switzerland: International Organization for Standardization. Retrieved from <a href="https://www.iso.org/standard/74591.html">https://www.iso.org/standard/74591.html</a>
+</div>
+<div id="ref-jarek2012" class="csl-entry" role="listitem">
+Jarek. (2012). <em>Mvnormtest.pdf</em>. Retrieved from <a href="https://cran.r-project.org/web/packages/mvnormtest/mvnormtest.pdf">https://cran.r-project.org/web/packages/mvnormtest/mvnormtest.pdf</a>
+</div>
+<div id="ref-kassambara2023" class="csl-entry" role="listitem">
+Kassambara, A. (2023). <em>Rstatix: Pipe-friendly framework for basic statistical tests</em>. Retrieved from <a href="https://cran.r-project.org/web/packages/rstatix/rstatix.pdf">https://cran.r-project.org/web/packages/rstatix/rstatix.pdf</a>
+</div>
+<div id="ref-silva2015" class="csl-entry" role="listitem">
+Silva, A. (2015). <em>Package HiDimDA’ - high dimensional discriminant analysis</em>. Retrieved from <a href="https://cran.r-project.org/web/packages/HiDimDA/HiDimDA.pdf">https://cran.r-project.org/web/packages/HiDimDA/HiDimDA.pdf</a>
+</div>
+<div id="ref-ungar2019" class="csl-entry" role="listitem">
+Ungar, P., Livengood, S., &amp; Crittenden, A. (2019). Dental microwear of living hadza foragers. <em>American Journal of Physical Anthropology</em>, <em>169</em>(2), 356–367. <a href="https://doi.org/10.1002/ajpa.23836">https://doi.org/10.1002/ajpa.23836</a>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.1 (2023-06-16 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19045)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United Kingdom.utf8 
+[2] LC_CTYPE=English_United Kingdom.utf8   
+[3] LC_MONETARY=English_United Kingdom.utf8
+[4] LC_NUMERIC=C                           
+[5] LC_TIME=English_United Kingdom.utf8    
+
+time zone: Europe/Lisbon
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] RVAideMemoire_0.9-83-7 vegan_2.6-4            lattice_0.21-8        
+ [4] permute_0.9-7          HiDimDA_0.2-4          ggpubr_0.6.0          
+ [7] lemon_0.4.6            formatR_1.14           kableExtra_1.3.4.9000 
+[10] candisc_0.8-6          heplots_1.6.0          broom_1.0.5           
+[13] rstatix_0.7.2          rrcov_1.7-4            robustbase_0.99-0     
+[16] mvnormtest_0.1-9       mvoutlier_2.1.1        sgeostat_1.0-27       
+[19] car_3.1-2              carData_3.0-5          corrplot_0.92         
+[22] ggspatial_1.1.9        ggrepel_0.9.4          gt_0.10.0             
+[25] rnaturalearth_0.3.4    lubridate_1.9.3        forcats_1.0.0         
+[28] stringr_1.5.1          dplyr_1.1.3            purrr_1.0.2           
+[31] readr_2.1.4            tidyr_1.3.0            tibble_3.2.1          
+[34] ggplot2_3.4.4          tidyverse_2.0.0       
+
+loaded via a namespace (and not attached):
+ [1] DBI_1.1.3               gridExtra_2.3           sandwich_3.0-2         
+ [4] rlang_1.1.1             magrittr_2.0.3          multcomp_1.4-25        
+ [7] e1071_1.7-13            compiler_4.3.1          mgcv_1.8-42            
+[10] systemfonts_1.0.5       vctrs_0.6.4             rvest_1.0.3            
+[13] pkgconfig_2.0.3         fastmap_1.1.1           backports_1.4.1        
+[16] labeling_0.4.3          effectsize_0.8.6        utf8_1.2.4             
+[19] rmarkdown_2.25          tzdb_0.4.0              xfun_0.40              
+[22] jsonlite_1.8.7          parallel_4.3.1          cluster_2.1.4          
+[25] R6_2.5.1                stringi_1.7.12          estimability_1.4.1     
+[28] Rcpp_1.0.11             knitr_1.45              zoo_1.8-12             
+[31] parameters_0.21.3       base64enc_0.1-3         Matrix_1.6-3           
+[34] splines_4.3.1           timechange_0.2.0        tidyselect_1.2.0       
+[37] rstudioapi_0.15.0       abind_1.4-5             yaml_2.3.7             
+[40] codetools_0.2-19        plyr_1.8.9              bayestestR_0.13.1      
+[43] withr_2.5.2             evaluate_0.23           survival_3.5-5         
+[46] sf_1.0-14               rnaturalearthdata_0.1.0 units_0.8-4            
+[49] proxy_0.4-27            xml2_1.3.5              pillar_1.9.0           
+[52] KernSmooth_2.23-21      stats4_4.3.1            insight_0.19.6         
+[55] pcaPP_2.0-3             generics_0.1.3          sp_2.1-1               
+[58] hms_1.1.3               munsell_0.5.0           scales_1.2.1           
+[61] xtable_1.8-4            class_7.3-22            glue_1.6.2             
+[64] emmeans_1.8.9           tools_4.3.1             webshot_0.5.5          
+[67] ggsignif_0.6.4          mvtnorm_1.2-3           rgl_1.2.1              
+[70] grid_4.3.1              datawizard_0.9.0        colorspace_2.1-0       
+[73] nlme_3.1-162            cli_3.6.1               fansi_1.0.5            
+[76] viridisLite_0.4.2       svglite_2.1.2           gtable_0.3.4           
+[79] DEoptimR_1.1-3          digest_0.6.33           classInt_0.4-10        
+[82] TH.data_1.1-2           farver_2.1.1            htmlwidgets_1.6.2      
+[85] htmltools_0.5.6.1       lifecycle_1.0.4         httr_1.4.7             
+[88] MASS_7.3-60            </code></pre>
+</div>
+</div>
+</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>warning about bindiwdth but as binwidth depends on scale and each variable has different scales, setting binwidth produces graph with different sized dots; a possible solution wouldbe to use ‘binwidth = unit(10, “npc”)’ as suggested here: <a href="https://github.com/mjskay/ggdist/issues/53" class="uri">https://github.com/mjskay/ggdist/issues/53</a> but this gives error of !object is not coercible to a unit, which I think is related to recent changes to unit()?<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Hedge’s <em>g</em> was calculated using the <code><a href="https://rpkgs.datanovia.com/rstatix/reference/cohens_d.html">rstatix::cohens_d</a></code> function, which includes an <code>hedges.correction</code>. According to the package <span class="citation" data-cites="kassambara2023">(<a href="#ref-kassambara2023" role="doc-biblioref">Kassambara, 2023</a>)</span>, this correction should be used when <em>n</em> is small and is a “logical indicating whether to apply the Hedges correction by multiplying the usual value of Cohen’s d by (N-3)/(N-2.25) (for unpaired t-test) and by (n1-2)/(n1-1.25) for paired t-test; where N is the total size of the two groups being compared (N = n1 + n2)”. Now, the <code>effsize::cohen.d</code> function has the same syntax, stating that applying an <code>hedges.correction</code> computes the Hedge’s <em>g</em> statistic. However, this second function is difficult to apply to <code>tidy</code> data, and hence, we opted to use the first option.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><strong>Linear discriminant analysis</strong> (<strong>LDA</strong>), <strong>normal discriminant analysis</strong> (<strong>NDA</strong>), or <strong>discriminant function analysis</strong> is a generalization of <strong>Fisher’s linear discriminant</strong>, a method used in statistics and other fields. The terms Fisher’s linear discriminant and LDA are often used interchangeably, although Fisher’s original article actually describes a slightly different discriminant, which does not make some of the assumptions of LDA such as normally distributed classes or equal class covariances, although <a href="https://stats.stackexchange.com/questions/71489/three-versions-of-discriminant-analysis-differences-and-how-to-use-them#:~:text=LDA%20is%20the%20direct%20extension,See%20also.">statisticians</a> disagree on the subject. Discriminant analysis (DA) encompasses procedures for classifying observations into groups (predictive discriminant analysis, PDA) and describing the relative importance of variables for distinguishing between groups (descriptive or canonical discriminant analysis, DDA). When following up MANOVA, DA falls into the first <a href="https://stats.stackexchange.com/questions/226915/what-is-descriptive-discriminant-analysis">category</a>. However, discriminant analysis can make substantial demands on sample size. A rule of thumb states that the data should have at least five more observations in each group than the number of variables <span class="citation" data-cites="carlson2017">(<a href="#ref-carlson2017" role="doc-biblioref">Carlson, 2017, p. 245</a>)</span>. If dealing with high dimensional data, one should instead conduct regularised discriminant analyses (rLDA or RDA) or quadratic discriminant analyses (QDA). <a href="http://www.sthda.com/english/articles/36-classification-methods-essentials/146-discriminant-analysis-essentials-in-r/">QDA</a> is a variant of LDA in which an individual covariance matrix is estimated for every class of observations, which accommodates more flexible decision boundaries, but whose number of to-estimate parameters increase faster than those of LDA, whereas RDA is a compromise between LDA and QDA that regularizes the individual class covariance matrices, i.e.&nbsp;restrictions are applied to the estimated <a href="https://yangxiaozhou.github.io/data/2019/10/02/linear-discriminant-analysis.html">parameters</a>. However, RDA and QDA do not produce scores, because they partition the space “by ellipsoid like structures based on the estimation of the inner-class covariance <a href="https://stat.ethz.ch/pipermail/r-help/2013-June/354629.html">matrices</a>”. Considering that scores are essential to LDA interpretation following MANOVA, we opted to commit to the simpler LDA.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Note that to conduct rLDA we had to standardise the data (by centering and scaling), a different transformation to the rank-transformation used previously.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

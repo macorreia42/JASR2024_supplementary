@@ -1,0 +1,685 @@
+---
+title: ISO 25178 variables and multivariate analyses complement SSFA variables in
+  an in vivo human dental microwear study
+author: "Maria Ana Correia"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+subtitle: Supplementary material
+format:
+  html:
+    code-fold: true
+    code-link: true
+    toc: true
+    toc_float: true
+    df_print: paged
+  pdf:
+    latex_engine: xelatex
+    citation_package: default
+    includes:
+      in_header: mypackages.tex
+bibliography: references.bib
+link-citations: true
+csl: "apa-6th-edition.csl"
+---
+
+This file documents the statistical analysis of dental microwear variables from Kenyan living human populations, as well as the code to produce Figure 1, the location map with fieldwork sites. A previous analyses of SSFA parameters (*Asfc*, *epLsar*, *HAsfc*, *Tfv*) was published in @correia2021. Here, ISO 25178 (or STA) parameters are also included in a multivariate analysis.
+
+```{r setup}
+#save images in folder in directory
+knitr::opts_chunk$set(
+  echo = TRUE, #shows code
+  warning = FALSE, message = FALSE, #stops warning messages
+  fig.path = "images/",
+  dev = c("pdf", "png"), #saves figures as pdf and png in images folder
+  tidy.opts=list(width.cutoff=60), # stops code from running off page
+  tidy=TRUE
+)
+```
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(rnaturalearth) #spatial data
+library(gt) #for tables
+library(ggrepel)#to repel labels
+library(ggspatial) #north and scale
+library(corrplot) # for correlation matrix
+library(car) #for Levene test and MANOVA test statistics
+library(mvoutlier) #to check for multivariate outliers
+library(mvnormtest) #to check for multivariate normality
+library(rrcov) #for robust MANOVA
+library(rstatix) #for several of the robust tests and effect sizes
+library(candisc) #for DDA
+library(heplots) # for assumptions and DDA
+library(purrr) # to apply summarise functions across columns
+library(kableExtra) #for pretty outputs
+library(formatR) #for chunk options
+library(lemon) #for repositioning legend
+library(ggpubr) #for boxplots with p-values
+library(HiDimDA) # for high dimensional LDA
+library(vegan) #for permanova
+library(RVAideMemoire) #for Permanova posthoc
+```
+
+```{r variables}
+#fileEnconding specifies character encoding as UTF-8 rather than Unicode characters;
+#otherwise unicode characters are added to column name
+ISO<-read.csv("MW_ISO.csv",header=TRUE,sep=",",
+                 stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+
+#making ggplot2 respect the Group order
+ISO$Group <- factor(ISO$Group,levels=unique(ISO$Group))
+ISO <- ISO |>
+  mutate(Group = fct_relevel(Group, "El Molo", "Turkana","Webuye", "Luhya","Luo"))
+levels(ISO$Group) <- c("El Molo", "Turkana", "Luhya (Webuye)","Luhya (Port Vict.)","Luo (Port Vict.)")
+
+# fieldwork site location
+sites <-
+  read.csv("workplaces.txt")
+```
+
+```{r functions}
+#graphical settings for map
+map_theme <- theme(axis.text=element_blank(),
+        axis.title=element_blank(),#and for axis titles
+        panel.grid.minor = element_blank(), 
+        panel.background = element_rect(fill="white"),
+        plot.background = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.ticks=element_blank(),  
+        panel.border = element_rect(colour = "black", fill=NA, linewidth = 0.5))
+
+#graphical settings for ggplot
+my_theme <- theme(
+  axis.text=element_text(size=8,colour="black"),
+  axis.ticks=element_line (linewidth = 0.5, colour="black"), 
+  axis.title=element_text(size=10),
+  panel.grid.minor = element_blank(), 
+  panel.background = element_blank(),
+  panel.grid.major = element_blank(),
+  legend.key=element_blank(),
+  panel.border = element_rect(colour = "black", fill=NA, linewidth = 0.5))
+
+#use first row data as column names for transposition
+header.true <- function(df) {
+  colnames(df) <- as.character(unlist(df[1,]))
+  df[-1,]
+}
+
+```
+
+# Producing the location map (Figure 1)
+
+```{r map, fig.width = 3.14, fig.height=3.14}
+africa <- ne_countries(type = "countries", continent = "Africa",
+                     scale = "medium", returnclass = "sf")
+lakes <- ne_download(scale = "medium", category = "physical",
+                     type = "lakes", returnclass = "sf")
+lakes <- ne_load(scale = "medium", category = "physical",
+                     type = "lakes", returnclass = "sf")
+# tomorrow start by trying to add lakes to map
+#to do:  inset
+inset <- africa %>% 
+  ggplot() + 
+  geom_sf(fill = "grey87", color = "grey30") +
+  geom_sf(data = africa |>
+                 filter(name %in% c("Kenya")),
+          fill = "grey70", color = "grey30") +
+  coord_sf(xlim = c(-22, 55), ylim = c(-40, 43), expand = FALSE)+
+  geom_rect(aes(xmin = 31, xmax = 43, ymin = -5, ymax = 5.6),
+            color = "black", fill = NA, linewidth = 0.6) +
+  map_theme
+
+
+main <- africa %>% 
+  ggplot() + 
+  geom_sf(fill = "grey87", color = "grey30") +
+  geom_sf(data = africa |>
+                 filter(name %in% c("Kenya")),
+          fill = "grey70", color = "grey30") +
+  geom_sf(data = lakes, fill = "white") +
+  geom_point(data = sites, aes(x = long, y = lat)) +
+  coord_sf(xlim = c(31, 43), ylim = c(-5, 5.6), expand = FALSE) +
+  geom_sf_text(data = africa %>%
+                 filter(name %in% c("Kenya")),
+                aes(label=name_long), size = 3.5,
+               fontface = "bold",
+                nudge_x = 0.6,
+                nudge_y = 0.3)+
+  geom_sf_text(data = lakes %>%
+                 filter(name %in% c("Lake Victoria", "Lake Turkana")),
+               aes(label = c("Lake \n Victoria", "Lake \nTurkana")), size = 2.5,
+               nudge_y = c(0.5, 0.1),
+               nudge_x = c(0.1, 1.00)) +
+  ggrepel::geom_text_repel(data = sites,
+                     aes(x = long, y = lat, label = c("El Molo", "Luo | Luhya", "Luhya", "Turkana"),
+                         fontface = "plain"),
+                     nudge_y = c(-0.3, 0.05, 0.1, -0.5), nudge_x = c(0.3, 1.0, 0.2, 0.05),
+                     size = 2.9) +
+  annotation_north_arrow(location = "tl", which_north = "true",
+                          height = unit (0.5, "cm"), width = unit (0.4, "cm"),
+                          pad_x = unit(0.4, "cm"), pad_y = unit(0.4, "cm")) +
+  annotation_scale(location = "bl", style = "bar") +
+  map_theme
+  
+  #inset rectangle
+
+main +
+  annotation_custom(ggplotGrob(inset),
+                    xmin = 37.5, xmax = 44.5, ymin = 1.5, ymax = 5.5)
+```
+
+# Addressing collinearity
+
+The STA parameters initially considered here are described in @iso/tc2132021:
+
+1.  skewness (Ssk);
+2.  maximum peak height (Sp);
+3.  maximum height (Sz);
+4.  extreme peak height (Sxp);
+5.  root mean square gradient (Sdq);
+6.  developed interfacial area ratio (Sdr);
+7.  pit void volume (Vvv);
+8.  five-point pit height (S5v);
+9.  mean dale area (Sda);
+10. mean dale volume (Sdv)
+
+Some of the STA variables likely capture the same underlying variation. Thus, we expect some of the variables to be highly correlated [@ungar2019], which affects general linear models since it violates one of the main assumptions which states that dependent variables will be independent from each other, i.e. that there will be no multicollinearity [@field2012, p. 274]. Here, a [correlogram](http://www.sthda.com/english/wiki/visualize-correlation-matrix-using-correlogram) was used to evaluate the correlation matrix.
+
+```{r matrix, fig.width = 5.5, fig.height=5.5}
+dISO <- ISO %>%
+  dplyr::select(Group,Asfc,epLsar,HAsfc,Tfv,Ssk,Sp,Sz,Sxp,Sdq,Sdr,Vvv,S5v,Sda,Sdv)
+
+x<-as.matrix(dISO[,2:15])
+M<-x|>
+  cor()
+
+cor.mtest <- function(mat, ...) {
+    mat <- as.matrix(mat)
+    n <- ncol(mat)
+    p.mat<- matrix(NA, n, n)
+    diag(p.mat) <- 0
+    for (i in 1:(n - 1)) {
+        for (j in (i + 1):n) {
+            tmp <- cor.test(mat[, i], mat[, j], ...)
+            p.mat[i, j] <- p.mat[j, i] <- tmp$p.value
+        }
+    }
+  colnames(p.mat) <- rownames(p.mat) <- colnames(mat)
+  p.mat
+}
+# matrix of the p-value of the correlation
+p.mat <- cor.mtest(x)
+
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+corrplot(M, method = "color",col = col(200),type = "lower",
+         tl.col="black",addCoef.col = "black",
+         p.mat = p.mat, sig.level = 0.01,insig = "blank",
+        diag=FALSE )
+
+#remove variables with high correlation
+dISO <- dISO|>
+  dplyr::select(-c(Sdr,Vvv,S5v))
+```
+
+Squares with colour are significant correlations ($p<0.01$) and we observed 3 correlations above 0.90, confirming collinearity. We removed 3 variables from the analyses to avoid this issue (*Sdr, Vvv, S5v*). In addition, we observe several medium to strong correlations, which suggest an underlying pattern of variation and support a multivariate approach.
+
+# Visualization and descriptive statistics
+
+Dotplots[^1] were used to visually examine the data, and it's interesting that there is one clear outlier for Sz, which explains the high standard deviation of this variable for the group including it. Descriptive statistics reported include standard and robust measures of both central tendency and dispersion (mean and SD; median and IQR).
+
+[^1]: warning about bindiwdth but as binwidth depends on scale and each variable has different scales, setting binwidth produces graph with different sized dots; a possible solution wouldbe to use 'binwidth = unit(10, "npc")' as suggested here: <https://github.com/mjskay/ggdist/issues/53> but this gives error of !object is not coercible to a unit, which I think is related to recent changes to unit()?
+
+```{r summary, fig.height=7, fig.width=8}
+grouped.data <- dISO |>
+  gather(key = "variable", value = "value", Asfc:Sdv) |>
+  group_by(variable)
+
+# Colour-blind palette
+cbbPalette <- c("#E69F00", "#CC79A7", "#009E73", "#56B4E9", "#0072B2")
+
+#dotplots
+dotplot <- ggplot(grouped.data,
+                  aes(x = value, colour = Group, fill = Group)) +
+  geom_dotplot(stackdir = "center",
+               stackgroups = TRUE, binpositions="all") +
+  coord_flip()+
+  scale_fill_manual(values = cbbPalette)+
+  scale_colour_manual(values = cbbPalette)+
+  scale_y_continuous(NULL, breaks = NULL)+
+  facet_wrap(~variable,scales = "free_y")+
+  my_theme
+
+reposition_legend(dotplot, 'center', panel='panel-4-3')
+
+#summary table
+sISO<-dISO |>
+  group_by(Group)|>
+  get_summary_stats(type = "common",
+                    show = c("n", "mean", "sd", "median", "iqr"))
+
+kbl(sISO, format = "latex", booktabs = TRUE, longtable = TRUE,
+             caption = "summary statistics")|>
+  kable_styling(latex_options = c("repeat_header"))|>
+  row_spec(0, italic = TRUE)
+```
+
+# Inferential Statistics
+
+A *multivariate analysis of variance* (MANOVA) was used to investigate variation in central tendency between groups, since it takes into consideration any relationship between the dependent variables.
+
+## Assumptions
+
+The assumptions of the MANOVA are [@field2012, p. 717]:
+
+1.  Independence
+
+2.  Random Sampling
+
+3.  Uni and multivariate normality (within groups)
+
+4.  Uni and multivariate homogeneity of variances
+
+5.  Linearity (linear relationships among all pairs of dependent variables, all pairs of covariates, and all dependent variable-covariate pairs in each cell)
+
+    ADDITIONAL LIMITATIONS
+
+6.  Unequal sample sizes (when cells in a factorial MANOVA have different sample sizes, the sum of squares for effect plus error does not equal the total sum of squares. This causes tests of main effects and interactions to be correlated)
+
+7.  Uni and multivariate outliers (may produce either a Type I or Type II error and give no indication as to which type of error is occurring in the analysis)
+
+**Independence** and **linearity** were addressed with the correlogram. **Sample sizes** are not too unequal, but small. Specifically, the sample size of each group is inferior to the number of variables, which is a risk when conducting multivariate analyses. Next, we will examine the outliers, normality and homocedasticity of the data. Conducting multiple statistical tests increases the chances of Type I error; when necessary, we applied a false discovery rate (FDR) correction, also known as Benjamini & Hochberg.
+
+The `aq.plot()` function from the `mvoutlier` package [@filzmoser] identifies **multivariate outliers** by plotting the ordered squared robust Mahalanobis distances of the observations against the empirical distribution function of the MD2i. The function produces 4 graphs that identify multivariate outliers in red. Univariate outliers were identified in the graphs above.
+
+```{r multi outliers, fig.height=5}
+
+outliers <- aq.plot(dISO[,2:12])
+
+```
+
+To test for **multivariate normality** within groups, we used the `mshapiro.test` in the `mvnormtest` package [@jarek2012], which suggests that there is no multivariate normality. We also assessed multinormality graphically by examining plots of the ordered Mahalanobis distances (D^2^) and paired chi-squared values, $\chi$ ^2^, of the model residuals. If the data are multivariate normal, the plot should form a relatively straight, diagonal line. The lack of multivariate normality is not surprising considering that the scales of measurement are very distinct between variables.
+
+```{r multi normality, fig.height=4, fig.width=6}
+# Perform the multivariate Shapiro-Wilk test within each group
+mshapiro_results <- dISO %>%
+  group_by(Group) %>%
+  do(tidy(mvnormtest::mshapiro.test(as.matrix(select(., where(is.numeric))))))
+
+
+kbl(mshapiro_results, digits = c(0, 3, 10), format = "latex", booktabs = TRUE,
+               caption = "Multinormality tests")|>
+  kable_styling(latex_options = "hold_position")|>
+  row_spec(0, italic = TRUE)
+
+cqplot(lm(as.matrix(dISO[, 2:12]) ~ Group, data = dISO), main = "Chi-Square Q-Q Plot of MANOVA Model Residuals") 
+```
+
+For **univariate normality**, we used `shapiro.test`, and found 4 significant tests at `p<0.01`, suggesting most variables are normal within groups.
+
+```{r uni normality}
+uni_normal <- grouped.data |>
+  group_by(variable, Group) |>
+  do(tidy(shapiro.test(.$value)))
+
+color.me <- which(uni_normal$p.value < 0.01)
+
+kbl(uni_normal, digits = c(3, 3), format = "latex",
+    booktabs = TRUE,longtable = TRUE, caption = "Uninormality tests")|>
+  kable_styling(latex_options = c("repeat_header"))|>
+  row_spec(color.me, bold = TRUE, background = "gray!6")|>
+  row_spec(0, italic = TRUE)
+```
+
+One may use Box's test to test for multivariate homoscedasticity, but this test is very sensitive to violations of normality, leading to rejection in most typical cases. @field2012 [p. 275] does not recommend a formal test for **multivariate homocedasticity** but simply to compare values within covariance matrices. These matrices are quite different, probably as a result, once again, of the difference in scales between variables.
+
+```{r multihomo}
+multihomo <- dISO |>
+  group_by(Group) |>
+  group_map(~cov(.))
+```
+
+```{r multi homocedasticity, results='asis'}
+cat("\\begin{landscape}\n")
+
+levels <- levels(dISO$Group)
+
+for (i in seq_along(multihomo)) {
+  #cat(paste("Table", i, "\n", "Covariance matrix for", levels(dISO$Group)))
+  print(kbl(multihomo[[i]], format = "latex", booktabs = T,
+                     digits =3,
+            caption = paste0("Covariance matrix for the ", levels[i]))%>%
+          kable_styling(latex_options = c("scale_down", "hold_position")))
+  cat('\n\n')
+}
+
+#knitr::knit_expand(text = "Covariance matrix for {{a}}",
+                                  #a = levels(dISO$Group))
+#caption = as.character(paste0("Covariance matrix for the",
+                                #names(levels(dISO$Group[i])))))
+
+cat("\\end{landscape}\n")
+```
+
+To asses **univariate equality of variances**, we used `levene_test` from the `rstatix` package [@kassambara2023]. Even though the test was applied to check the assumptions of the MANOVA, the results already suggest that there are no significant differences in dispersion, something that was investigated in previous studies of living human dental microwear [@ungar2019].
+
+```{r uni homocedasticity}
+uni_homocedast <- grouped.data |>
+  levene_test(value ~ Group)
+
+kbl(uni_homocedast, digits = c(0, 0, 0, 3, 3), format = "latex", booktabs = TRUE,
+             caption = "Unihomocedasticity tests")|>
+          kable_styling(latex_options = c("hold_position"))|>
+  row_spec(0, italic = TRUE)
+```
+
+## Main Test
+
+Bottom line, the data violates several of the assumptions, and non-parametric alternatives should be used. An alternative is to conduct a **permutational multivariate analysis of variance** (**PERMANOVA**) using the `adonis.II` function in the `RVAideMemoire` package [@herve2023], a non-parametric test used to test whether the centroids and dispersion of a categorical variable are equivalent for all groups [@anderson2017].
+
+Another issue with the data is that $n>p$, i.e. number of samples per group (9 for El Molo, 7 for Turkana, 7 for the Luhya from Webuye and 6 for the Luhya from Port Victoria and 8 for the Luo) is lower than the number of dependent variables (11). This stops us from applying some corrections (such as MCD), and decreases the power of the test, and thus, results should be interpreted cautiously.
+
+```{r permanova}
+permanova <- RVAideMemoire::adonis.II(formula = dISO[, 2:12]~Group, data = dISO, method = "euclidean")
+
+es_permanova <- effectsize::eta_squared(permanova, partial = TRUE)
+
+permanova <- permanova|>
+  mutate(partialEta2 = ifelse(row_number() == 1, es_permanova$Eta2_partial[1], NA))|>
+  rename("p-value" = "Pr(>F)")
+
+
+options(knitr.kable.NA = '')
+kbl(permanova, caption = "Permanova Results with 999 permutations",
+    digits = c(0, 0, 0, 3, 3, 3, 3), format = "latex", booktabs = TRUE,
+    format.args = list(big.mark = ",")) |>
+  kable_styling(latex_options = c("hold_position"), full_width = FALSE)|>
+  row_spec(0, italic = TRUE)
+```
+
+The interpretation of partial-$\eta$ ^2^ is, by convention, that 0.01, 0.06, and 0.14 correspond to small, medium, and large effects, respectively [@cohen1988]. Thus, we can state that group has a large effect on the dependent variable, such that it accounts for a meaningful part of the variance in some linear combination of the dependent variables.
+
+## Follow-up tests
+
+To follow up the MANOVA, we applied pairwise PERMANOVA's on the distance matrix between groups, univariate ANOVA's on rank-transformed data, and linear discriminant analyses (LDA). Pairwise PERMANOVA's inform on the multivariate distances between groups, univariate ANOVA's inform on variation driven by a single variable, and LDA finds a linear combination of features that characterizes or separates the classes of objects [@field2012]. As for the assumptions tests, we applied a false discovery rate (FDR) correction to control for the increase of Type I error when multiple testing.
+
+### Pairwise PERMANOVA
+
+Pairwise PERMANOVA was conducted using the `pairwise.perm.manova` function from the `RVAideMemoire` package on a distance matrix produced using `vegdist` function from the `vegan` package.
+
+```{r permanova post hoc}
+dist_dml <- vegan::vegdist(x=as.matrix(dISO[,2:12]), method="euclidean", binary=FALSE, diag=TRUE, upper=TRUE, na.rm=FALSE)
+
+pairwise_permanova <- pairwise.perm.manova(resp = dist_dml, fact = dISO$Group,
+                     test = "Wilks", nperm = 999,
+                     progress = FALSE, p.method = "fdr", F = TRUE, R2 = TRUE)
+
+# Extract the relevant information and create a data frame
+pairwisePermanova <- as.data.frame(cbind(
+  group1 = rep(dimnames(pairwise_permanova$p.value)[[2]],
+               each = ncol(pairwise_permanova$p.value)),
+  group2 = rep(dimnames(pairwise_permanova$p.value)[[1]],
+               times = nrow(pairwise_permanova$p.value)),
+  "statistic(pseudo-F)" = round(as.vector(pairwise_permanova$F.value), 3),
+  "adjusted p-value" = round(as.vector(pairwise_permanova$p.value), 3),
+  R2 = round(as.vector(pairwise_permanova$R2.value), 3)
+))
+
+# Filter out rows with NA values and first column with numbers
+pairwisePermanova <- pairwisePermanova |>
+  drop_na()|>
+  select(-0)
+
+color.me <- which(pairwisePermanova$`adjusted p-value` < 0.05)
+
+kbl(pairwisePermanova, format = "latex", booktabs = TRUE,
+             caption = pairwise_permanova$method)|>
+          kable_styling(latex_options = c("hold_position"))|>
+  row_spec(color.me, bold = TRUE, background = "gray!6")|>
+  row_spec(0, italic = TRUE)
+```
+
+Interpretation of $R$ ^2^ is, by convention, that 0.01, 0.09, and 0.25 correspond to small, medium, and large effects, respectively [@cohen1988]. We found two significant comparisons, between the El Molo and the Turkana, and the El Molo and the Luo (Port Victoria).
+
+### Univariate ANOVA
+
+As the data does not follow ANOVA assumptions, namely normality, we rank-transformed the data, also known as a Kruskal Wallis test, for which we used the `kruskal_test` function from the `rstatix` package.
+
+```{r followup ANOVA}
+followup_kruskal <- grouped.data |>
+  kruskal_test(value ~ Group)|>
+  adjust_pvalue(method = "fdr")
+
+#followup_kruskal <- followup_kruskal[, !names(followup_kruskal) %in% ".y."]
+
+followup_effsize <- grouped.data |>
+  kruskal_effsize(value ~ Group)
+
+followup_effsize <- followup_effsize|>
+  select(variable, effsize, magnitude)
+
+merged_data <- followup_kruskal %>%
+  left_join(followup_effsize, by = "variable")|>
+  select(variable, n, df, statistic,  p.adj, method, effsize, magnitude)
+
+colnames(merged_data) <- c("variable", "n", "df", "statistic (H)",  "adjusted p-value", "method", "eta-squared", "magnitude")
+
+color.me <- which(merged_data$`adjusted p-value` < 0.05)
+
+# Convert the R object into a LaTeX table
+kbl(merged_data, digits = c(3, 3, 0, 3, 3),
+    format = "latex", booktabs = TRUE, caption = "Univariate Kruskal-Wallis")|>
+  kable_styling(latex_options = "hold_position")|>
+  row_spec(color.me, bold = TRUE, background = "gray!6")|>
+  row_spec(0, italic = TRUE)
+```
+
+At `p < 0.05`, only *Ssk* was significantly different between groups, although other 3 variables -- *Hasfc*, *Sxp*, and *Tfv* also have large effect sizes. In our previous study [@correia2021], *Hasfc* and *Tfv* were also not significantly different with large effect sizes .
+
+Next, we conducted pairwise comparisons for the significantly different variable *Ssk*. We used the function `dunn_test` from the `rstatix` package, which respects the ranked data of Kruskall-Wallis, while controlling for multiple comparisons. We chose Dunn's test over Games-Howells because the first addresses distribution issues, whereas the second is more appropriate when there is no homogeneity of variances, which is not as problematic here (see \@ref(assumptions)). Finally, we calculated Hedge's *g*[^2] as a measure of effect size for each pairwise comparison.
+
+[^2]: Hedge's *g* was calculated using the `rstatix::cohens_d` function, which includes an `hedges.correction`. According to the package [@kassambara2023], this correction should be used when *n* is small and is a "logical indicating whether to apply the Hedges correction by multiplying the usual value of Cohen's d by (N-3)/(N-2.25) (for unpaired t-test) and by (n1-2)/(n1-1.25) for paired t-test; where N is the total size of the two groups being compared (N = n1 + n2)". Now, the `effsize::cohen.d` function has the same syntax, stating that applying an `hedges.correction` computes the Hedge's *g* statistic. However, this second function is difficult to apply to `tidy` data, and hence, we opted to use the first option.
+
+```{r followup pairwise}
+
+pairwise <- dunn_test(dISO, Ssk~Group, p.adjust.method = "fdr", detailed = TRUE)
+
+
+pairwise_effsize <- dISO|>
+  rstatix::cohens_d(formula = Ssk~Group,
+                    paired = FALSE, hedges.correction = TRUE)
+
+pairwise_effsize <- pairwise_effsize|>
+  select(group1, group2, effsize, magnitude)
+
+merged_data_effsize <- pairwise %>%
+  left_join(pairwise_effsize, by = c("group1", "group2"))|>
+  select(group1, group2, estimate, statistic, p.adj,effsize, magnitude)
+
+colnames(merged_data_effsize) <- c("group1", "group2", "mean difference", "statistic (z)",  "adjusted p-value", "hedge's g", "magnitude")
+
+color.me <- which(merged_data_effsize$`adjusted p-value` < 0.05)
+
+kbl(merged_data_effsize, digits = c(3, 3, 3, 3, 3, 3),
+    format = "latex", booktabs = TRUE,
+    caption = "Pairwise comparisons for Ssk using Dunn's test")|>
+  kable_styling(latex_options = c("hold_position", "scale_down"))|>
+  row_spec(color.me, bold = TRUE, background = "gray!6")|>
+  row_spec(0, italic = TRUE)
+
+#boxplot
+pairwise <- pairwise|>
+  add_xy_position(x = "Group")
+
+ggplot(dISO, aes(y = Ssk, x = Group)) +
+  geom_boxplot(aes(fill = Group), show.legend = FALSE) +
+  scale_fill_manual(values = cbbPalette) +
+  stat_pvalue_manual(pairwise, label = "p = {scales::pvalue(p.adj)}",
+                     tip.length = 0.01, size = 2.5, hide.ns = "p.adj",
+                     step.increase = 0.02) +
+  my_theme
+  
+
+```
+
+For the *Ssk* variable, we observe that 4 comparisons are significantly different, Interestingly, most comparisons have large or moderate effect sizes, suggesting that the sample size is too low to detect more significant comparisons. The one exception is the negligible effect size in the comparison between the Turkana and Luhya (Webuye).
+
+### Canonical discriminant analysis
+
+Canonical discriminant analyses (CDA) find a linear combination of features that characterizes or separates two or more classes of objects or events. This approach makes important demands in terms of data distribution, and sample sizes. However, alternatives, such as regularized or quadratic discriminant analyses, are more adequate for predictive rather than descriptive analyses[^3]. In addition, even when dealing with non-normal and high dimensional data, CDA axis retain discriminality between classes although cut-off points between classes may be incorrect. In other words, CDA on non-normal data cannot be generalized to other data [@hastie2009, p. 110]. Here, CDA was conducted using the `candisc` function from the `candisc` package, while rLDA was conducted using the `Slda` function from the `HiDimDA` package with the goal of informing the reliability of the CDA approach[^4].
+
+[^3]: **Linear discriminant analysis** (**LDA**), **normal discriminant analysis** (**NDA**), or **discriminant function analysis** is a generalization of **Fisher's linear discriminant**, a method used in statistics and other fields. The terms Fisher's linear discriminant and LDA are often used interchangeably, although Fisher's original article actually describes a slightly different discriminant, which does not make some of the assumptions of LDA such as normally distributed classes or equal class covariances, although [statisticians](https://stats.stackexchange.com/questions/71489/three-versions-of-discriminant-analysis-differences-and-how-to-use-them#:~:text=LDA%20is%20the%20direct%20extension,See%20also.) disagree on the subject. Discriminant analysis (DA) encompasses procedures for classifying observations into groups (predictive discriminant analysis, PDA) and describing the relative importance of variables for distinguishing between groups (descriptive or canonical discriminant analysis, DDA). When following up MANOVA, DA falls into the first [category](https://stats.stackexchange.com/questions/226915/what-is-descriptive-discriminant-analysis). However, discriminant analysis can make substantial demands on sample size. A rule of thumb states that the data should have at least five more observations in each group than the number of variables [@carlson2017, p. 245]. If dealing with high dimensional data, one should instead conduct regularised discriminant analyses (rLDA or RDA) or quadratic discriminant analyses (QDA). [QDA](http://www.sthda.com/english/articles/36-classification-methods-essentials/146-discriminant-analysis-essentials-in-r/) is a variant of LDA in which an individual covariance matrix is estimated for every class of observations, which accommodates more flexible decision boundaries, but whose number of to-estimate parameters increase faster than those of LDA, whereas RDA is a compromise between LDA and QDA that regularizes the individual class covariance matrices, i.e. restrictions are applied to the estimated [parameters](https://yangxiaozhou.github.io/data/2019/10/02/linear-discriminant-analysis.html). However, RDA and QDA do not produce scores, because they partition the space "by ellipsoid like structures based on the estimation of the inner-class covariance [matrices](https://stat.ethz.ch/pipermail/r-help/2013-June/354629.html)". Considering that scores are essential to LDA interpretation following MANOVA, we opted to commit to the simpler LDA.
+
+[^4]: Note that to conduct rLDA we had to standardise the data (by centering and scaling), a different transformation to the rank-transformation used previously.
+
+```{r DDA}
+ISOmanova <- lm(as.matrix(dISO[, 2:12])~Group,dISO)
+#summary(manova(ISOmanova), test = "Wilks")
+
+ISO.can<-candisc(ISOmanova)
+ISO.can
+```
+
+```{r LD1LD2, fig.width=7}
+
+# Create a data frame for the scores
+scores_df <- data.frame(
+  Group = ISO.can$scores$Group,
+  Can1 = ISO.can$scores$Can1,
+  Can2 = ISO.can$scores$Can2
+)
+
+# Extract the relevant information from the candisc object
+loadings_df <- data.frame(
+  Variable = rownames(ISO.can$structure),
+  Can1 = ISO.can$structure[, 1],
+  Can2 = ISO.can$structure[, 2])
+
+# Calculate the percentage of variance explained by each canonical variable
+eigenvalues <- ISO.can$eigenvalues
+total_variance <- sum(eigenvalues)
+variance_explained <- eigenvalues / total_variance * 100
+
+# Define axis titles including the percentage of variance explained
+x_axis_title <- paste("Can1 (", round(variance_explained[1], 1), "%)", sep = "")
+y_axis_title <- paste("Can2 (", round(variance_explained[2], 1), "%)", sep = "")
+
+# Calculate centroids for each group
+centroids <- aggregate(cbind(Can1, Can2) ~ Group, scores_df, mean)
+
+# Create the biplot using ggplot2
+ggplot() +
+  geom_point(data = scores_df, aes(x = Can1, y = Can2, color = Group), size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  stat_ellipse(data = scores_df, aes(
+    x = Can1, y = Can2, fill = Group), 
+    geom = "polygon", level = 0.68, alpha = 0.2) +  # Add ellipses for group
+  geom_text(data = centroids, aes(
+    x = Can1, y = Can2, label = "+"),
+    size = 6, color = cbbPalette) +  # Add "+" symbols for centroids
+  geom_text_repel(data = loadings_df, aes(
+    x = Can1 * 6, y = Can2 * 6, label = Variable),
+    size = 3, hjust = 1, vjust = 0.5, box.padding = 0.5) +
+  geom_segment(data = loadings_df, aes(x = 0, y = 0,
+                                       xend = Can1*5.5, yend = Can2*5.5), 
+               arrow = arrow(type = "open", length = unit(0.2, "cm")), 
+               linewidth = 0.5, lineend = "round") +
+  geom_text(data = centroids, aes(
+    x = Can1, y = Can2, label = Group),
+    size = 4, color = cbbPalette, fontface = 2,
+    nudge_x = c(-1.0, 0.5, -0.5, 1.5, 1.0),
+    nudge_y = c(-1.5, -1.2, 1.5, 1.2, -1.0)) +  # Add group labels
+  scale_color_manual(values = cbbPalette) +
+  scale_fill_manual(values = cbbPalette) +
+  coord_fixed(ratio = 1) +
+  my_theme + labs(x = x_axis_title, y = y_axis_title) +
+  guides(colour = "none", fill = "none")
+
+heplot(ISO.can, var.col = "black", fill = TRUE, fill.alpha = 0.1)
+
+plot(ISO.can, which=1, col = cbbPalette, cex.axis = 0.7, cex.lab = 0.9,
+     points.1d=TRUE, rev.axes = TRUE,pch = 15:19,
+     var.lwd = 2, var.col = "black")
+
+plot(ISO.can, which=2, col = cbbPalette, cex.axis = 0.7, cex.lab = 0.8,
+     points.1d=TRUE, rev.axes = TRUE,pch = 15:19,
+     var.lwd = 2, var.col = "black")
+```
+
+```{r LD3LD4}
+# Create a data frame for the scores
+scores_df <- data.frame(
+  Group = ISO.can$scores$Group,
+  Can3 = ISO.can$scores$Can3,
+  Can4 = ISO.can$scores$Can4
+)
+
+# Extract the relevant information from the candisc object
+loadings_df <- data.frame(
+  Variable = rownames(ISO.can$structure),
+  Can3 = ISO.can$structure[, 3],
+  Can4 = ISO.can$structure[, 4])
+
+# Define axis titles including the percentage of variance explained
+x_axis_title <- paste("Can3 (", round(variance_explained[3], 1), "%)", sep = "")
+y_axis_title <- paste("Can4 (", round(variance_explained[4], 1), "%)", sep = "")
+
+# Calculate centroids for each group
+centroids <- aggregate(cbind(Can3, Can4) ~ Group, scores_df, mean)
+
+# Create the biplot using ggplot2
+ggplot() +
+  geom_point(data = scores_df, aes(x = Can3, y = Can4, color = Group), size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  stat_ellipse(data = scores_df, aes(
+    x = Can3, y = Can4, fill = Group), 
+    geom = "polygon", level = 0.68, alpha = 0.2) +  # Add ellipses for group
+  geom_text(data = centroids, aes(
+    x = Can3, y = Can4, label = "+"),
+    size = 6, color = cbbPalette) +  # Add "+" symbols for centroids
+  geom_text_repel(data = loadings_df, aes(
+    x = Can3 * 6, y = Can4 * 6, label = Variable),
+    size = 3, hjust = 1, vjust = 0.5, box.padding = 0.5) +
+  geom_segment(data = loadings_df, aes(x = 0, y = 0,
+                                       xend = Can3*5.5, yend = Can4*5.5), 
+               arrow = arrow(type = "open", length = unit(0.2, "cm")), 
+               linewidth = 0.5, lineend = "round") +
+  geom_text(data = centroids, aes(
+    x = Can3, y = Can4, label = Group),
+    size = 4, color = cbbPalette, fontface = 2,
+    nudge_x = c(1.0, -0.5, 0.0, -1.0, 1.5),
+    nudge_y = c(1.5, -1.0, -1.0, 1.2, -0.5)) +  # Add group labels
+  scale_color_manual(values = cbbPalette) +
+  scale_fill_manual(values = cbbPalette) +
+  coord_fixed(ratio = 1) +
+  my_theme + labs(x = x_axis_title, y = y_axis_title) +
+  guides(colour = "none", fill = "none")
+
+heplots::heplot(ISO.can, variables = 3:4, var.col = "black",
+       fill = TRUE, fill.alpha = 0.1)
+```
+
+The CDA finds 4 canonical vectors, but only two have group means that are significantly different. Together, the 2 explain 75% of the variation observed.
+
+The **HE plot** represent sums-of-squares-and-products matrices for linear hypotheses (**H**) and for error (**E**). In the default scaling, such plots have the visual property that a given effect in the multivariate linear model is significant (by Roy's maximum root test) if the H ellipse projects anywhere outside the E ellipse. The size of the H ellipse relative to that of the E ellipse is an indication of the magnitude of the multivariate effect for group. The further away variable centroids are from the "Error" circle, the stronger the association between groups and variables [@friendly2017].
+
+In the **biplot**, each data point is represented by its score on the discriminant axis. The variable vectors represent the structure coefficients, i.e. the angle between the vector and the canonical axis represent the correlation of variables with canonical scores, while the vector's relative length reflect the sum of the squared correlations and hence represent the variable's contribution to the discrimination between groups [@field2012, p. 738].
+
+```{r rLDA, warning = FALSE}
+scaled_ISO <- dISO|>
+  mutate(across(where(is.numeric), scale))
+
+Slda <- Slda(data = as.matrix(scaled_ISO[, 2:12]), grouping = scaled_ISO$Group, StddzData = TRUE, ladfun = "classification")
+Slda
+```
+
+'Slda' is a shrunken discriminant analysis that finds the coefficients of a linear discriminant rule based on Fisher and Sun's (2011) estimate and generalizations of Ledoit and Wolf's (2004) optimal shrunken covariance matrix [@silva2015]. Here, it finds 4 discriminants just as the canonical approach, and keeps 4 variables in the discriminant rule, *Tfv*, *Ssk*, *Sxp*, *Sda*, which are also the variables with higher impact before. Thus, this approach confirms the discriminatory and descriptive power of the canonical approach. As scores are not produced in these approaches, no further analyses is possible.
+
+# References
+
+::: {#refs}
+:::
+
+```{r  session, echo=FALSE}
+sessionInfo()
+```

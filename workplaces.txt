@@ -1,0 +1,5 @@
+sitename,lat,long
+El Molo,2.8550,36.6920
+Luo & Luhya (Port Victoria),0.0963,33.9782
+Luhya (Webuye),0.5992,34.7796
+Turkana,2.8738,36.1651
