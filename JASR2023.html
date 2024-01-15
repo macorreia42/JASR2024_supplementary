@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Maria Ana Correia">
-<meta name="dcterms.date" content="2024-08-11">
+<meta name="dcterms.date" content="2025-03-01">
 <title>ISO 25178 variables and multivariate analyses complement SSFA variables in an in vivo human dental microwear study</title>
 <style>
 code{white-space: pre-wrap;}
@@ -132,7 +132,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 11, 2024</p>
+      <p class="date">March 1, 2025</p>
     </div>
   </div>
   
@@ -206,10 +206,30 @@ div.csl-indent {
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa</span> <span class="op">&lt;-</span> <span class="fu">ne_countries</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"countries"</span>, continent <span class="op">=</span> <span class="st">"Africa"</span>,</span>
 <span>    scale <span class="op">=</span> <span class="st">"medium"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
 <span><span class="va">lakes</span> <span class="op">&lt;-</span> <span class="fu">ne_download</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, category <span class="op">=</span> <span class="st">"physical"</span>,</span>
-<span>    type <span class="op">=</span> <span class="st">"lakes"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
-<span><span class="va">lakes</span> <span class="op">&lt;-</span> <span class="fu">ne_load</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, category <span class="op">=</span> <span class="st">"physical"</span>, type <span class="op">=</span> <span class="st">"lakes"</span>,</span>
-<span>    returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
-<span><span class="co"># tomorrow start by trying to add lakes to map to do: inset</span></span>
+<span>    type <span class="op">=</span> <span class="st">"lakes"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `ne_50m_lakes' from data source 
+  `C:\Users\corre\AppData\Local\Temp\Rtmp0Ayz4t\ne_50m_lakes.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 412 features and 39 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: -165.8985 ymin: -50.62002 xmax: 176.0827 ymax: 81.94033
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lakes</span> <span class="op">&lt;-</span> <span class="fu">ne_load</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"medium"</span>, category <span class="op">=</span> <span class="st">"physical"</span>, type <span class="op">=</span> <span class="st">"lakes"</span>,</span>
+<span>    returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `ne_50m_lakes' from data source 
+  `C:\Users\corre\AppData\Local\Temp\Rtmp0Ayz4t\ne_50m_lakes.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 412 features and 39 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: -165.8985 ymin: -50.62002 xmax: 176.0827 ymax: 81.94033
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tomorrow start by trying to add lakes to map to do: inset</span></span>
 <span><span class="va">inset</span> <span class="op">&lt;-</span> <span class="va">africa</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"grey87"</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">africa</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Kenya"</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"grey70"</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -260,7 +280,7 @@ div.csl-indent {
 </ol>
 <p>Some of the STA variables likely capture the same underlying variation. Thus, we expect some of the variables to be highly correlated <span class="citation" data-cites="ungar2019">(<a href="#ref-ungar2019" role="doc-biblioref">Ungar, Livengood, &amp; Crittenden, 2019</a>)</span>, which affects general linear models since it violates one of the main assumptions which states that dependent variables will be independent from each other, i.e.&nbsp;that there will be no multicollinearity <span class="citation" data-cites="field2012">(<a href="#ref-field2012" role="doc-biblioref">Field, Miles, &amp; Field, 2012, p. 274</a>)</span>. Here, a <a href="http://www.sthda.com/english/wiki/visualize-correlation-matrix-using-correlogram">correlogram</a> was used to evaluate the correlation matrix.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dISO</span> <span class="op">&lt;-</span> <span class="va">ISO</span> <span class="op">%&gt;%</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dISO</span> <span class="op">&lt;-</span> <span class="va">ISO</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Group</span>, <span class="va">Asfc</span>, <span class="va">epLsar</span>, <span class="va">HAsfc</span>, <span class="va">Tfv</span>, <span class="va">Ssk</span>, <span class="va">Sp</span>, <span class="va">Sz</span>,</span>
 <span>        <span class="va">Sxp</span>, <span class="va">Sdq</span>, <span class="va">Sdr</span>, <span class="va">Vvv</span>, <span class="va">S5v</span>, <span class="va">Sda</span>, <span class="va">Sdv</span><span class="op">)</span></span>
 <span></span>
@@ -293,7 +313,7 @@ div.csl-indent {
 </details><div class="cell-output-display">
 <p><embed src="images/matrix-1.pdf" class="img-fluid" width="528"></p>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remove variables with high correlation</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remove variables with high correlation</span></span>
 <span><span class="va">dISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Sdr</span>, <span class="va">Vvv</span>, <span class="va">S5v</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -302,7 +322,7 @@ div.csl-indent {
 </section><section id="visualization-and-descriptive-statistics" class="level1"><h1>Visualization and descriptive statistics</h1>
 <p>Dotplots<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> were used to visually examine the data, and it’s interesting that there is one clear outlier for Sz, which explains the high standard deviation of this variable for the group including it. Descriptive statistics reported include standard and robust measures of both central tendency and dispersion (mean and SD; median and IQR).</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grouped.data</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grouped.data</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">gather</span><span class="op">(</span>key <span class="op">=</span> <span class="st">"variable"</span>, value <span class="op">=</span> <span class="st">"value"</span>, <span class="va">Asfc</span><span class="op">:</span><span class="va">Sdv</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">variable</span><span class="op">)</span></span>
 <span></span>
@@ -321,7 +341,7 @@ div.csl-indent {
 </details><div class="cell-output-display">
 <p><embed src="images/summary-1.pdf" class="img-fluid" width="768"></p>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># summary table</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># summary table</span></span>
 <span><span class="va">sISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">get_summary_stats</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"common"</span>, show <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"mean"</span>,</span>
@@ -354,10 +374,10 @@ div.csl-indent {
 <p><strong>Independence</strong> and <strong>linearity</strong> were addressed with the correlogram. <strong>Sample sizes</strong> are not too unequal, but small. Specifically, the sample size of each group is inferior to the number of variables, which is a risk when conducting multivariate analyses. Next, we will examine the outliers, normality and homocedasticity of the data. Conducting multiple statistical tests increases the chances of Type I error; when necessary, we applied a false discovery rate (FDR) correction, also known as Benjamini &amp; Hochberg.</p>
 <p>The <code>aq.plot()</code> function from the <code>mvoutlier</code> package <span class="citation" data-cites="filzmoser">(<a href="#ref-filzmoser" role="doc-biblioref">Filzmoser &amp; Gschwandter, n.d.</a>)</span> identifies <strong>multivariate outliers</strong> by plotting the ordered squared robust Mahalanobis distances of the observations against the empirical distribution function of the MD2i. The function produces 4 graphs that identify multivariate outliers in red. Univariate outliers were identified in the graphs above.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outliers</span> <span class="op">&lt;-</span> <span class="fu">aq.plot</span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outliers</span> <span class="op">&lt;-</span> <span class="fu">aq.plot</span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Projection to the first and second robust principal components.
-Proportion of total variation (explained variance): 0.9994162</code></pre>
+Proportion of total variation (explained variance): 0.9994562</code></pre>
 </div>
 <div class="cell-output-display">
 <p><embed src="images/multi%20outliers-1.pdf" class="img-fluid" width="672"></p>
@@ -365,7 +385,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 </div>
 <p>To test for <strong>multivariate normality</strong> within groups, we used the <code>mshapiro.test</code> in the <code>mvnormtest</code> package <span class="citation" data-cites="jarek2012">(<a href="#ref-jarek2012" role="doc-biblioref">Jarek, 2012</a>)</span>, which suggests that there is no multivariate normality. We also assessed multinormality graphically by examining plots of the ordered Mahalanobis distances (D<sup>2</sup>) and paired chi-squared values, <span class="math inline">\(\chi\)</span> <sup>2</sup>, of the model residuals. If the data are multivariate normal, the plot should form a relatively straight, diagonal line. The lack of multivariate normality is not surprising considering that the scales of measurement are very distinct between variables.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform the multivariate Shapiro-Wilk test within each</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Perform the multivariate Shapiro-Wilk test within each</span></span>
 <span><span class="co"># group</span></span>
 <span><span class="va">mshapiro_results</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -379,14 +399,14 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 </details><div class="cell-output-display">
 
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cqplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">dISO</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Chi-Square Q-Q Plot of MANOVA Model Residuals"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cqplot</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">dISO</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Chi-Square Q-Q Plot of MANOVA Model Residuals"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><embed src="images/multi%20normality-1.pdf" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>For <strong>univariate normality</strong>, we used <code>shapiro.test</code>, and found 4 significant tests at <code>p&lt;0.01</code>, suggesting most variables are normal within groups.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">uni_normal</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">uni_normal</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">variable</span>, <span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">do</span><span class="op">(</span><span class="fu">tidy</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -403,15 +423,15 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 </div>
 <p>One may use Box’s test to test for multivariate homoscedasticity, but this test is very sensitive to violations of normality, leading to rejection in most typical cases. <span class="citation" data-cites="field2012">Field et al. (<a href="#ref-field2012" role="doc-biblioref">2012, p. 275</a>)</span> does not recommend a formal test for <strong>multivariate homocedasticity</strong> but simply to compare values within covariance matrices. These matrices are quite different, probably as a result, once again, of the difference in scales between variables.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">multihomo</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">multihomo</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">group_map</span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\\begin{landscape}\n"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\\begin{landscape}\n"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><p>To asses <strong>univariate equality of variances</strong>, we used <code>levene_test</code> from the <code>rstatix</code> package <span class="citation" data-cites="kassambara2023">(<a href="#ref-kassambara2023" role="doc-biblioref">Kassambara, 2023</a>)</span>. Even though the test was applied to check the assumptions of the MANOVA, the results already suggest that there are no significant differences in dispersion, something that was investigated in previous studies of living human dental microwear <span class="citation" data-cites="ungar2019">(<a href="#ref-ungar2019" role="doc-biblioref">Ungar et al., 2019</a>)</span>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">uni_homocedast</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">uni_homocedast</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">levene_test</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">Group</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kbl</span><span class="op">(</span><span class="va">uni_homocedast</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"latex"</span>,</span>
@@ -426,7 +446,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 <p>Bottom line, the data violates several of the assumptions, and non-parametric alternatives should be used. An alternative is to conduct a <strong>permutational multivariate analysis of variance</strong>&nbsp;(<strong>PERMANOVA</strong>) using the <code>adonis.II</code> function in the <code>RVAideMemoire</code> package <span class="citation" data-cites="herve2023">(<a href="#ref-herve2023" role="doc-biblioref">Herve, 2023</a>)</span>, a non-parametric test used to test whether the centroids and dispersion of a categorical variable are equivalent for all groups <span class="citation" data-cites="anderson2017">(<a href="#ref-anderson2017" role="doc-biblioref">Anderson, 2017</a>)</span>.</p>
 <p>Another issue with the data is that <span class="math inline">\(n&gt;p\)</span>, i.e.&nbsp;number of samples per group (9 for El Molo, 7 for Turkana, 7 for the Luhya from Webuye and 6 for the Luhya from Port Victoria and 8 for the Luo) is lower than the number of dependent variables (11). This stops us from applying some corrections (such as MCD), and decreases the power of the test, and thus, results should be interpreted cautiously.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">permanova</span> <span class="op">&lt;-</span> <span class="fu">RVAideMemoire</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RVAideMemoire/man/adonis.II.html">adonis.II</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span> <span class="op">~</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">permanova</span> <span class="op">&lt;-</span> <span class="fu">RVAideMemoire</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RVAideMemoire/man/adonis.II.html">adonis.II</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span> <span class="op">~</span></span>
 <span>    <span class="va">Group</span>, data <span class="op">=</span> <span class="va">dISO</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">es_permanova</span> <span class="op">&lt;-</span> <span class="fu">effectsize</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/effectsize/reference/eta_squared.html">eta_squared</a></span><span class="op">(</span><span class="va">permanova</span>, partial <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -453,7 +473,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 <section id="pairwise-permanova" class="level3"><h3 class="anchored" data-anchor-id="pairwise-permanova">Pairwise PERMANOVA</h3>
 <p>Pairwise PERMANOVA was conducted using the <code>pairwise.perm.manova</code> function from the <code>RVAideMemoire</code> package on a distance matrix produced using <code>vegdist</code> function from the <code>vegan</code> package.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_dml</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_dml</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>,</span>
 <span>    binary <span class="op">=</span> <span class="cn">FALSE</span>, diag <span class="op">=</span> <span class="cn">TRUE</span>, upper <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pairwise_permanova</span> <span class="op">&lt;-</span> <span class="fu">pairwise.perm.manova</span><span class="op">(</span>resp <span class="op">=</span> <span class="va">dist_dml</span>, fact <span class="op">=</span> <span class="va">dISO</span><span class="op">$</span><span class="va">Group</span>,</span>
@@ -487,7 +507,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 </section><section id="univariate-anova" class="level3"><h3 class="anchored" data-anchor-id="univariate-anova">Univariate ANOVA</h3>
 <p>As the data does not follow ANOVA assumptions, namely normality, we rank-transformed the data, also known as a Kruskal Wallis test, for which we used the <code>kruskal_test</code> function from the <code>rstatix</code> package.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">followup_kruskal</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">followup_kruskal</span> <span class="op">&lt;-</span> <span class="va">grouped.data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">kruskal_test</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">Group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">adjust_pvalue</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"fdr"</span><span class="op">)</span></span>
 <span></span>
@@ -523,7 +543,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 <p>At <code>p &lt; 0.05</code>, only <em>Ssk</em> was significantly different between groups, although other 3 variables – <em>Hasfc</em>, <em>Sxp</em>, and <em>Tfv</em> also have large effect sizes. In our previous study <span class="citation" data-cites="correia2021">(<a href="#ref-correia2021" role="doc-biblioref">Correia et al., 2021</a>)</span>, <em>Hasfc</em> and <em>Tfv</em> were also not significantly different with large effect sizes .</p>
 <p>Next, we conducted pairwise comparisons for the significantly different variable <em>Ssk</em>. We used the function <code>dunn_test</code> from the <code>rstatix</code> package, which respects the ranked data of Kruskall-Wallis, while controlling for multiple comparisons. We chose Dunn’s test over Games-Howells because the first addresses distribution issues, whereas the second is more appropriate when there is no homogeneity of variances, which is not as problematic here (see @ref(assumptions)). Finally, we calculated Hedge’s <em>g</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> as a measure of effect size for each pairwise comparison.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pairwise</span> <span class="op">&lt;-</span> <span class="fu">dunn_test</span><span class="op">(</span><span class="va">dISO</span>, <span class="va">Ssk</span> <span class="op">~</span> <span class="va">Group</span>, p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pairwise</span> <span class="op">&lt;-</span> <span class="fu">dunn_test</span><span class="op">(</span><span class="va">dISO</span>, <span class="va">Ssk</span> <span class="op">~</span> <span class="va">Group</span>, p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>,</span>
 <span>    detailed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span></span>
@@ -552,7 +572,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 </details><div class="cell-output-display">
 
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># boxplot</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># boxplot</span></span>
 <span><span class="va">pairwise</span> <span class="op">&lt;-</span> <span class="va">pairwise</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">add_xy_position</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Group"</span><span class="op">)</span></span>
 <span></span>
@@ -569,7 +589,7 @@ Proportion of total variation (explained variance): 0.9994162</code></pre>
 </section><section id="canonical-discriminant-analysis" class="level3"><h3 class="anchored" data-anchor-id="canonical-discriminant-analysis">Canonical discriminant analysis</h3>
 <p>Canonical discriminant analyses (CDA) find a linear combination of features that characterizes or separates two or more classes of objects or events. This approach makes important demands in terms of data distribution, and sample sizes. However, alternatives, such as regularized or quadratic discriminant analyses, are more adequate for predictive rather than descriptive analyses<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. In addition, even when dealing with non-normal and high dimensional data, CDA axis retain discriminality between classes although cut-off points between classes may be incorrect. In other words, CDA on non-normal data cannot be generalized to other data <span class="citation" data-cites="hastie2009">(<a href="#ref-hastie2009" role="doc-biblioref">Hastie, Tibshirani, &amp; Friedman, 2009, p. 110</a>)</span>. Here, CDA was conducted using the <code>candisc</code> function from the <code>candisc</code> package, while rLDA was conducted using the <code>Slda</code> function from the <code>HiDimDA</code> package with the goal of informing the reliability of the CDA approach<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ISOmanova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, <span class="va">dISO</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ISOmanova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span> <span class="op">~</span> <span class="va">Group</span>, <span class="va">dISO</span><span class="op">)</span></span>
 <span><span class="co"># summary(manova(ISOmanova), test = 'Wilks')</span></span>
 <span></span>
 <span><span class="va">ISO.can</span> <span class="op">&lt;-</span> <span class="fu">candisc</span><span class="op">(</span><span class="va">ISOmanova</span><span class="op">)</span></span>
@@ -597,7 +617,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for the scores</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for the scores</span></span>
 <span><span class="va">scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  Group <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Group</span>,</span>
 <span>  Can1 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Can1</span>,</span>
@@ -653,20 +673,20 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </details><div class="cell-output-display">
 <p><embed src="images/LD1LD2-1.pdf" class="img-fluid" width="672"></p>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">heplot</span><span class="op">(</span><span class="va">ISO.can</span>, var.col <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">TRUE</span>, fill.alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">heplot</span><span class="op">(</span><span class="va">ISO.can</span>, var.col <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">TRUE</span>, fill.alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><embed src="images/LD1LD2-2.pdf" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Vector scale factor set to  6.435736 </code></pre>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ISO.can</span>, which<span class="op">=</span><span class="fl">1</span>, col <span class="op">=</span> <span class="va">cbbPalette</span>, cex.axis <span class="op">=</span> <span class="fl">0.7</span>, cex.lab <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ISO.can</span>, which<span class="op">=</span><span class="fl">1</span>, col <span class="op">=</span> <span class="va">cbbPalette</span>, cex.axis <span class="op">=</span> <span class="fl">0.7</span>, cex.lab <span class="op">=</span> <span class="fl">0.9</span>,</span>
 <span>     points.1d<span class="op">=</span><span class="cn">TRUE</span>, rev.axes <span class="op">=</span> <span class="cn">TRUE</span>,pch <span class="op">=</span> <span class="fl">15</span><span class="op">:</span><span class="fl">19</span>,</span>
 <span>     var.lwd <span class="op">=</span> <span class="fl">2</span>, var.col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><embed src="images/LD1LD2-3.pdf" class="img-fluid" width="672"></p>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ISO.can</span>, which<span class="op">=</span><span class="fl">2</span>, col <span class="op">=</span> <span class="va">cbbPalette</span>, cex.axis <span class="op">=</span> <span class="fl">0.7</span>, cex.lab <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ISO.can</span>, which<span class="op">=</span><span class="fl">2</span>, col <span class="op">=</span> <span class="va">cbbPalette</span>, cex.axis <span class="op">=</span> <span class="fl">0.7</span>, cex.lab <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>     points.1d<span class="op">=</span><span class="cn">TRUE</span>, rev.axes <span class="op">=</span> <span class="cn">TRUE</span>,pch <span class="op">=</span> <span class="fl">15</span><span class="op">:</span><span class="fl">19</span>,</span>
 <span>     var.lwd <span class="op">=</span> <span class="fl">2</span>, var.col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -674,7 +694,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for the scores</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a data frame for the scores</span></span>
 <span><span class="va">scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  Group <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Group</span>,</span>
 <span>  Can3 <span class="op">=</span> <span class="va">ISO.can</span><span class="op">$</span><span class="va">scores</span><span class="op">$</span><span class="va">Can3</span>,</span>
@@ -725,7 +745,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </details><div class="cell-output-display">
 <p><embed src="images/LD3LD4-1.pdf" class="img-fluid" width="672"></p>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">heplots</span><span class="fu">::</span><span class="fu"><a href="https://friendly.github.io/heplots/reference/heplot.html">heplot</a></span><span class="op">(</span><span class="va">ISO.can</span>, variables <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, var.col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">heplots</span><span class="fu">::</span><span class="fu"><a href="https://friendly.github.io/heplots/reference/heplot.html">heplot</a></span><span class="op">(</span><span class="va">ISO.can</span>, variables <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, var.col <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>       fill <span class="op">=</span> <span class="cn">TRUE</span>, fill.alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><embed src="images/LD3LD4-2.pdf" class="img-fluid" width="672"></p>
@@ -738,7 +758,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The <strong>HE plot</strong> represent sums-of-squares-and-products matrices for linear hypotheses (<strong>H</strong>) and for error (<strong>E</strong>). In the default scaling, such plots have the visual property that a given effect in the multivariate linear model is significant (by Roy’s maximum root test) if the H ellipse projects anywhere outside the E ellipse. The size of the H ellipse relative to that of the E ellipse is an indication of the magnitude of the multivariate effect for group. The further away variable centroids are from the “Error” circle, the stronger the association between groups and variables <span class="citation" data-cites="friendly2017">(<a href="#ref-friendly2017" role="doc-biblioref">Friendly &amp; Sigal, 2017</a>)</span>.</p>
 <p>In the <strong>biplot</strong>, each data point is represented by its score on the discriminant axis. The variable vectors represent the structure coefficients, i.e.&nbsp;the angle between the vector and the canonical axis represent the correlation of variables with canonical scores, while the vector’s relative length reflect the sum of the squared correlations and hence represent the variable’s contribution to the discrimination between groups <span class="citation" data-cites="field2012">(<a href="#ref-field2012" role="doc-biblioref">Field et al., 2012, p. 738</a>)</span>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scaled_ISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scaled_ISO</span> <span class="op">&lt;-</span> <span class="va">dISO</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">scale</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">Slda</span> <span class="op">&lt;-</span> <span class="fu">Slda</span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">scaled_ISO</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span>, grouping <span class="op">=</span> <span class="va">scaled_ISO</span><span class="op">$</span><span class="va">Group</span>,</span>
@@ -849,48 +869,48 @@ attached base packages:
 other attached packages:
  [1] RVAideMemoire_0.9-83-7 vegan_2.6-4            lattice_0.21-8        
  [4] permute_0.9-7          HiDimDA_0.2-4          ggpubr_0.6.0          
- [7] lemon_0.4.6            formatR_1.14           kableExtra_1.3.4.9000 
+ [7] lemon_0.4.7            formatR_1.14           kableExtra_1.3.4.9000 
 [10] candisc_0.8-6          heplots_1.6.0          broom_1.0.5           
-[13] rstatix_0.7.2          rrcov_1.7-4            robustbase_0.99-0     
+[13] rstatix_0.7.2          rrcov_1.7-4            robustbase_0.99-1     
 [16] mvnormtest_0.1-9       mvoutlier_2.1.1        sgeostat_1.0-27       
 [19] car_3.1-2              carData_3.0-5          corrplot_0.92         
 [22] ggspatial_1.1.9        ggrepel_0.9.4          gt_0.10.0             
-[25] rnaturalearth_0.3.4    lubridate_1.9.3        forcats_1.0.0         
+[25] rnaturalearth_1.0.1    lubridate_1.9.3        forcats_1.0.0         
 [28] stringr_1.5.1          dplyr_1.1.3            purrr_1.0.2           
 [31] readr_2.1.4            tidyr_1.3.0            tibble_3.2.1          
 [34] ggplot2_3.4.4          tidyverse_2.0.0       
 
 loaded via a namespace (and not attached):
- [1] DBI_1.1.3               gridExtra_2.3           sandwich_3.0-2         
+ [1] DBI_1.2.0               gridExtra_2.3           sandwich_3.1-0         
  [4] rlang_1.1.1             magrittr_2.0.3          multcomp_1.4-25        
  [7] e1071_1.7-13            compiler_4.3.1          mgcv_1.8-42            
 [10] systemfonts_1.0.5       vctrs_0.6.4             rvest_1.0.3            
 [13] pkgconfig_2.0.3         fastmap_1.1.1           backports_1.4.1        
 [16] labeling_0.4.3          effectsize_0.8.6        utf8_1.2.4             
-[19] rmarkdown_2.25          tzdb_0.4.0              xfun_0.40              
-[22] jsonlite_1.8.7          parallel_4.3.1          cluster_2.1.4          
-[25] R6_2.5.1                stringi_1.7.12          estimability_1.4.1     
-[28] Rcpp_1.0.11             knitr_1.45              zoo_1.8-12             
-[31] parameters_0.21.3       base64enc_0.1-3         Matrix_1.6-3           
-[34] splines_4.3.1           timechange_0.2.0        tidyselect_1.2.0       
-[37] rstudioapi_0.15.0       abind_1.4-5             yaml_2.3.7             
-[40] codetools_0.2-19        plyr_1.8.9              bayestestR_0.13.1      
-[43] withr_2.5.2             evaluate_0.23           survival_3.5-5         
-[46] sf_1.0-14               rnaturalearthdata_0.1.0 units_0.8-4            
-[49] proxy_0.4-27            xml2_1.3.5              pillar_1.9.0           
-[52] KernSmooth_2.23-21      stats4_4.3.1            insight_0.19.6         
-[55] pcaPP_2.0-3             generics_0.1.3          sp_2.1-1               
-[58] hms_1.1.3               munsell_0.5.0           scales_1.2.1           
-[61] xtable_1.8-4            class_7.3-22            glue_1.6.2             
-[64] emmeans_1.8.9           tools_4.3.1             webshot_0.5.5          
-[67] ggsignif_0.6.4          mvtnorm_1.2-3           rgl_1.2.1              
-[70] grid_4.3.1              datawizard_0.9.0        colorspace_2.1-0       
-[73] nlme_3.1-162            cli_3.6.1               fansi_1.0.5            
-[76] viridisLite_0.4.2       svglite_2.1.2           gtable_0.3.4           
-[79] DEoptimR_1.1-3          digest_0.6.33           classInt_0.4-10        
-[82] TH.data_1.1-2           farver_2.1.1            htmlwidgets_1.6.2      
-[85] htmltools_0.5.6.1       lifecycle_1.0.4         httr_1.4.7             
-[88] MASS_7.3-60            </code></pre>
+[19] rmarkdown_2.25          tzdb_0.4.0              xfun_0.41              
+[22] jsonlite_1.8.8          terra_1.7-65            parallel_4.3.1         
+[25] cluster_2.1.4           R6_2.5.1                stringi_1.8.3          
+[28] estimability_1.4.1      Rcpp_1.0.11             knitr_1.45             
+[31] zoo_1.8-12              parameters_0.21.3       base64enc_0.1-3        
+[34] Matrix_1.6-4            splines_4.3.1           timechange_0.2.0       
+[37] tidyselect_1.2.0        rstudioapi_0.15.0       abind_1.4-5            
+[40] yaml_2.3.8              codetools_0.2-19        plyr_1.8.9             
+[43] bayestestR_0.13.1       withr_2.5.2             evaluate_0.23          
+[46] survival_3.5-5          sf_1.0-14               rnaturalearthdata_0.1.0
+[49] units_0.8-4             proxy_0.4-27            xml2_1.3.6             
+[52] pillar_1.9.0            KernSmooth_2.23-21      stats4_4.3.1           
+[55] insight_0.19.7          pcaPP_2.0-4             generics_0.1.3         
+[58] sp_2.1-2                hms_1.1.3               munsell_0.5.0          
+[61] scales_1.3.0            xtable_1.8-4            class_7.3-22           
+[64] glue_1.6.2              emmeans_1.9.0           tools_4.3.1            
+[67] webshot_0.5.5           ggsignif_0.6.4          mvtnorm_1.2-4          
+[70] rgl_1.2.8               grid_4.3.1              datawizard_0.9.1       
+[73] colorspace_2.1-0        nlme_3.1-162            cli_3.6.1              
+[76] fansi_1.0.5             viridisLite_0.4.2       svglite_2.1.3          
+[79] gtable_0.3.4            DEoptimR_1.1-3          digest_0.6.33          
+[82] classInt_0.4-10         TH.data_1.1-2           farver_2.1.1           
+[85] htmlwidgets_1.6.4       htmltools_0.5.7         lifecycle_1.0.4        
+[88] httr_1.4.7              MASS_7.3-60            </code></pre>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
