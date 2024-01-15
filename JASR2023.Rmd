@@ -259,6 +259,8 @@ sISO<-dISO |>
 
 kbl(sISO, format = "html", booktabs = TRUE, longtable = TRUE,
              caption = "summary statistics")|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(0, italic = TRUE)
 ```
 
@@ -305,8 +307,10 @@ mshapiro_results <- dISO %>%
   do(tidy(mvnormtest::mshapiro.test(as.matrix(select(., where(is.numeric))))))
 
 
-kbl(mshapiro_results, digits = c(0, 3, 10), format = "html", booktabs = TRUE,
-               caption = "Multinormality tests")|>
+kbl(mshapiro_results, digits = c(0, 3, 10), format = "html",
+    booktabs = TRUE, caption = "Multinormality tests")|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(0, italic = TRUE)
 
 cqplot(lm(as.matrix(dISO[, 2:12]) ~ Group, data = dISO), main = "Chi-Square Q-Q Plot of MANOVA Model Residuals") 
@@ -323,6 +327,8 @@ color.me <- which(uni_normal$p.value < 0.01)
 
 kbl(uni_normal, digits = c(3, 3), format = "html",
     booktabs = TRUE,longtable = TRUE, caption = "Uninormality tests")|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 ```
@@ -364,6 +370,8 @@ uni_homocedast <- grouped.data |>
 
 kbl(uni_homocedast, digits = c(0, 0, 0, 3, 3), format = "html", booktabs = TRUE,
              caption = "Unihomocedasticity tests")|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(0, italic = TRUE)
 ```
 
@@ -387,6 +395,8 @@ options(knitr.kable.NA = '')
 kbl(permanova, caption = "Permanova Results with 999 permutations",
     digits = c(0, 0, 0, 3, 3, 3, 3), format = "html", booktabs = TRUE,
     format.args = list(big.mark = ",")) |>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(0, italic = TRUE)
 ```
 
@@ -427,6 +437,8 @@ color.me <- which(pairwisePermanova$`adjusted p-value` < 0.05)
 
 kbl(pairwisePermanova, format = "html", booktabs = TRUE,
              caption = pairwise_permanova$method)|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 ```
@@ -458,9 +470,11 @@ colnames(merged_data) <- c("variable", "n", "df", "statistic (H)",  "adjusted p-
 
 color.me <- which(merged_data$`adjusted p-value` < 0.05)
 
-# Convert the R object into a LaTeX table
+# Convert the R object into a html table
 kbl(merged_data, digits = c(3, 3, 0, 3, 3),
     format = "html", booktabs = TRUE, caption = "Univariate Kruskal-Wallis")|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 ```
@@ -494,6 +508,8 @@ color.me <- which(merged_data_effsize$`adjusted p-value` < 0.05)
 kbl(merged_data_effsize, digits = c(3, 3, 3, 3, 3, 3),
     format = "html", booktabs = TRUE,
     caption = "Pairwise comparisons for Ssk using Dunn's test")|>
+  kable_classic(full_width = F, fixed_thead = T,
+                bootstrap_options = c("hover", "responsive")) |>
   row_spec(color.me, bold = TRUE, background = "gray!6")|>
   row_spec(0, italic = TRUE)
 
