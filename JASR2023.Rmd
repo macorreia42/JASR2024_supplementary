@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
   echo = TRUE, #shows code
   warning = FALSE, message = FALSE, #stops warning messages
   fig.path = "images/",
-  dev = c("svg", "png"), #saves figures as pdf and png in images folder
+  dev = c("svg", "png", "tiff"), #saves figures as svg, tiff, and png in images folder
   tidy.opts=list(width.cutoff=60), # stops code from running off page
   tidy=TRUE
 )
