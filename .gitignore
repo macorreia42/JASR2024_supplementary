@@ -3,8 +3,8 @@
 .RData
 .Ruserdata
 # Untracked files
-files/*.svg
-files/*.tiff
+images/*.svg
+images/*.tiff
 CDA.png
 Figure2.jpg
 JASR2023.pdf
