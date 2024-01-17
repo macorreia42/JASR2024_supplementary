@@ -4,8 +4,11 @@ output:
     keep_md: TRUE
 ---
 
-* DDA-1.png ![](DDA-1.png)
- * DDA-2.png ![](DDA-2.png)
+* map-1.png ![](map-1.png)
+ * matrix-1.png ![](matrix-1.png)
+ * summary-1.png ![](summary-1.png)
+ * multi outliers-1.png ![](multi outliers-1.png)
+ * multi normality-1.png ![](multi normality-1.png)
  * followup pairwise-1.png ![](followup pairwise-1.png)
  * LD1LD2-1.png ![](LD1LD2-1.png)
  * LD1LD2-2.png ![](LD1LD2-2.png)
@@ -13,8 +16,3 @@ output:
  * LD1LD2-4.png ![](LD1LD2-4.png)
  * LD3LD4-1.png ![](LD3LD4-1.png)
  * LD3LD4-2.png ![](LD3LD4-2.png)
- * map-1.png ![](map-1.png)
- * matrix-1.png ![](matrix-1.png)
- * multi normality-1.png ![](multi normality-1.png)
- * multi outliers-1.png ![](multi outliers-1.png)
- * summary-1.png ![](summary-1.png)

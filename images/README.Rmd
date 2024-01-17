@@ -6,5 +6,8 @@ output:
 
 ```{r, results ="asis", echo = FALSE}
 fig_files <- dir(pattern = "png$") 
-cat(paste0("* ", fig_files, " ![](", fig_files, ")\n"))
+fig_info <- file.info(fig_files)
+sorted_files <- fig_files[order(fig_info$mtime)]
+
+cat(paste0("* ", sorted_files, " ![](", sorted_files, ")\n"))
 ```
