@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
   warning = FALSE, message = FALSE, #stops warning messages
   fig.path = "images/",
   dev = c("svg", "png", "tiff"), #saves figures as svg, tiff, and png in images folder
-  dpi=300, #publishing quality
+  dpi = 500, #publishing quality for combination art (Elsevier)
   tidy.opts=list(width.cutoff=60), # stops code from running off page
   tidy=TRUE
 )
