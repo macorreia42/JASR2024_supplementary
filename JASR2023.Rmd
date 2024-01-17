@@ -343,7 +343,6 @@ multihomo <- dISO |>
 ```
 
 ```{r multi homocedasticity, results='asis'}
-cat("\\begin{landscape}\n")
 
 levels <- levels(dISO$Group)
 
@@ -354,13 +353,6 @@ for (i in seq_along(multihomo)) {
             caption = paste0("Covariance matrix for the ", levels[i])))
   cat('\n\n')
 }
-
-#knitr::knit_expand(text = "Covariance matrix for {{a}}",
-                                  #a = levels(dISO$Group))
-#caption = as.character(paste0("Covariance matrix for the",
-                                #names(levels(dISO$Group[i])))))
-
-cat("\\end{landscape}\n")
 ```
 
 To asses **univariate equality of variances**, we used `levene_test` from the `rstatix` package [@kassambara2023]. Even though the test was applied to check the assumptions of the MANOVA, the results already suggest that there are no significant differences in dispersion, something that was investigated in previous studies of living human dental microwear [@ungar2019].
