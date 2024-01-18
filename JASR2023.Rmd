@@ -347,10 +347,12 @@ multihomo <- dISO |>
 levels <- levels(dISO$Group)
 
 for (i in seq_along(multihomo)) {
-  #cat(paste("Table", i, "\n", "Covariance matrix for", levels(dISO$Group)))
-  print(kbl(multihomo[[i]], format = "html", booktabs = T,
-                     digits =3,
-            caption = paste0("Covariance matrix for the ", levels[i])))
+  table_html <- kbl(multihomo[[i]], format = "html", booktabs = T, digits = 3,
+                    caption = paste0("Covariance matrix for the ", levels[i])) |>
+    kable_classic(full_width = F, fixed_thead = T,
+                  bootstrap_options = c("hover", "responsive"))
+  
+  print(table_html)
   cat('\n\n')
 }
 ```
